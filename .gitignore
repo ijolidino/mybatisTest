@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+/.mvn/wrapper/maven-wrapper.jar
+/.mvn/wrapper/maven-wrapper.properties
+/src/test/java/com/blackmagicwoman/mybatistest/MybatisTestApplicationTests.java
