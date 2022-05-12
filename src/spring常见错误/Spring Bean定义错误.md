@@ -23,6 +23,7 @@ return "helloworld";
 }
 ```
 测试回滚
+测试回滚
 上述代码即可实现一个简单的功能：访问http://localhost:8080/hi 返回 helloworld。两个关键类位于同一个包（即 application）中。其中 HelloWorldController 因为添加了 @RestController，最终被识别成一个 Controller 的 Bean。
 但是，假设有一天，当我们需要添加多个类似的 Controller，同时又希望用更清晰的包层次和结构来管理时，我们可能会去单独建立一个独立于 application 包之外的 Controller 包，并调整类的位置。调整后结构示意如下：
 ![img_3.png](img/img_3.png)
