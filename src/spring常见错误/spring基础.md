@@ -1,18 +1,24 @@
 其实就是那些 Spring 最本质的实现和思想。当你最开始学习的时候，你可能困惑于为什么要用 Spring，而随着对 Spring 原理的深入探究和应用，你慢慢会发现，最大的收获其实还是对于这个困惑的理解。接下来我就给你讲讲。
 在进行“传统的”Java 编程时，对象与对象之间的关系都是紧密耦合的，例如服务类 Service 使用组件 ComponentA，则可能写出这样的代码：
+```java
 public class Service {
 private ComponentA component = new ComponentA("first component");
 }
+```
 在没有 Spring 之前，你应该会觉得这段代码并没有多大问题，毕竟大家都这么写，而且也没有什么更好的方式。就像只有一条大路可走时，大家都朝一个方向走，你大概率不会反思是不是有捷径。
 而随着项目的开发推进，你会发现检验一个方式好不好的硬性标准之一，就是看它有没有拥抱变化的能力。假设有一天，我们的 ComponentA 类的构造器需要更多的参数了，你会发现，上述代码到处充斥着这行需要改进的代码：
+```java
 private ComponentA component = new ComponentA("first component");
+```
 此时你可能会想了，那我用下面这种方式来构造 Service 就可以了吧？
+```java
 public class Service {
 private ComponentA component；
 public Service(ComponentA component){
 this.component = component;
 }
 }
+```
 当然不行，你忽略了一点，你在构建 Service 对象的时候，不还得使用 new 关键字来构建 Component？需要修改的调用处并不少！
 很明显，这是一个噩梦。那么，除了这点，还有没有别的不好的地方呢？上面说的是非单例的情况，如果 ComponentA 本身是一个单例，会不会好些？毕竟我们可能找一个地方 new 一次 ComponentA 实例就足够了，但是你可能会发现另外一些问题。
 下面是一段用“双重检验锁”实现的 CompoentA 类：
