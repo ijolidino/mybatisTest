@@ -1,5 +1,9 @@
 package com.blackmagicwoman.mybatistest.common;
 
+import org.junit.jupiter.api.Test;
+
+import java.util.regex.Pattern;
+
 /**
  * @program: 创建一个公共的配置类，定义一些配置信息RabbitMQ的队列主题名称
  * @description: 配置类
@@ -20,4 +24,10 @@ public class RabbitMQConfig {
  *     RabbttMQ的DIRECT交换机和队列绑定的匹配键 DtrectRouting
  */
     public static final String RABBITMQ_DEMO_DIRECT_ROUTING = "rabbitmqDemoDtrectRouting";
+
+    @Test
+    public void testPatten(){
+        String quote = Pattern.quote("");
+        System.out.println(quote);
+    }
 }
