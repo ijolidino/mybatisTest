@@ -5,4 +5,148 @@
     <select id="getCursor"  resultType="com.blackmagicwoman.mybatistest.entity.PmsCategory" parameterType="integer">
         select * from pms_category limit #{limit}
     </select>
+<!--    <select id="queryByPage" resultType="com.blackmagicwoman.mybatistest.entity.PmsCategory">-->
+<!--        select * from pms_category-->
+<!--    </select>-->
+
+    <resultMap id="BaseResultMap" type="com.blackmagicwoman.mybatistest.entity.PmsCategory" >
+        <result column="cat_id" property="catId" />
+        <result column="name" property="name" />
+        <result column="parent_cid" property="parentCid" />
+        <result column="cat_level" property="catLevel" />
+        <result column="show_status" property="showStatus" />
+        <result column="sort" property="sort" />
+        <result column="icon" property="icon" />
+        <result column="product_unit" property="productUnit" />
+        <result column="product_count" property="productCount" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        cat_id,
+                name,
+                parent_cid,
+                cat_level,
+                show_status,
+                sort,
+                icon,
+                product_unit,
+                product_count
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" parameterType="com.blackmagicwoman.mybatistest.entity.PmsCategory">
+        INSERT INTO pms_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != catId and '' != catId">
+                cat_id,
+            </if>
+            <if test="null != name and '' != name">
+                name,
+            </if>
+            <if test="null != parentCid and '' != parentCid">
+                parent_cid,
+            </if>
+            <if test="null != catLevel and '' != catLevel">
+                cat_level,
+            </if>
+            <if test="null != showStatus and '' != showStatus">
+                show_status,
+            </if>
+            <if test="null != sort and '' != sort">
+                sort,
+            </if>
+            <if test="null != icon and '' != icon">
+                icon,
+            </if>
+            <if test="null != productUnit and '' != productUnit">
+                product_unit,
+            </if>
+            <if test="null != productCount and '' != productCount">
+                product_count
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != catId and '' != catId">
+                #{catId},
+            </if>
+            <if test="null != name and '' != name">
+                #{name},
+            </if>
+            <if test="null != parentCid and '' != parentCid">
+                #{parentCid},
+            </if>
+            <if test="null != catLevel and '' != catLevel">
+                #{catLevel},
+            </if>
+            <if test="null != showStatus and '' != showStatus">
+                #{showStatus},
+            </if>
+            <if test="null != sort and '' != sort">
+                #{sort},
+            </if>
+            <if test="null != icon and '' != icon">
+                #{icon},
+            </if>
+            <if test="null != productUnit and '' != productUnit">
+                #{productUnit},
+            </if>
+            <if test="null != productCount and '' != productCount">
+                #{productCount}
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="batchInsert">
+    insert into pms_category
+    (cat_id,
+        name,
+        parent_cid,
+        cat_level,
+        show_status,
+        sort,
+        icon,
+        product_unit,
+        product_count)
+    values  <foreach collection="list" item="item" separator="," open="(" close=")">
+        (#{item.catId},#{item.name},#{item.parentCid},#{item.catLevel},#{item.showStatus},#{item.sort},#{item.icon},#{item.productUnit},#{item.productCount})
+    </foreach>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM pms_category
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.blackmagicwoman.mybatistest.entity.PmsCategory">
+        UPDATE pms_category
+        <set>
+            <if test="null != catId and '' != catId">cat_id = #{catId},</if>
+            <if test="null != name and '' != name">name = #{name},</if>
+            <if test="null != parentCid and '' != parentCid">parent_cid = #{parentCid},</if>
+            <if test="null != catLevel and '' != catLevel">cat_level = #{catLevel},</if>
+            <if test="null != showStatus and '' != showStatus">show_status = #{showStatus},</if>
+            <if test="null != sort and '' != sort">sort = #{sort},</if>
+            <if test="null != icon and '' != icon">icon = #{icon},</if>
+            <if test="null != productUnit and '' != productUnit">product_unit = #{productUnit},</if>
+            <if test="null != productCount and '' != productCount">product_count = #{productCount}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM pms_category
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM pms_category
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM pms_category
+    </select>
 </mapper>

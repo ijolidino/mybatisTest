@@ -1,7 +1,7 @@
 package com.blackmagicwoman.mybatistest.service;
 
 import com.blackmagicwoman.mybatistest.entity.Emp;
-import com.baomidou.mybatisplus.extension.service.IService;
+//import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Fuwen
  * @since 2022-04-15
  */
-public interface IEmpService extends IService<Emp> {
+public interface IEmpService  {
 
 }

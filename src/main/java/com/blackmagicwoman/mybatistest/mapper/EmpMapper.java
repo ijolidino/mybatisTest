@@ -1,7 +1,7 @@
 package com.blackmagicwoman.mybatistest.mapper;
 
 import com.blackmagicwoman.mybatistest.entity.Emp;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+//import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2022-04-15
  */
 @Mapper
-public interface EmpMapper extends BaseMapper<Emp> {
+public interface EmpMapper {
 
 }

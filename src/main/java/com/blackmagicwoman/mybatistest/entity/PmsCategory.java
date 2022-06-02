@@ -1,8 +1,8 @@
 package com.blackmagicwoman.mybatistest.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+//import com.baomidou.mybatisplus.annotation.IdType;
+//import com.baomidou.mybatisplus.annotation.TableId;
+//import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -15,14 +15,14 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Fuwen
  * @since 2022-05-03
  */
-@TableName("pms_category")
+//@TableName("pms_category")
 @ApiModel(value = "PmsCategory对象", description = "商品三级分类")
 public class PmsCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("分类id")
-    @TableId(value = "cat_id", type = IdType.AUTO)
+    //@TableId(value = "cat_id", type = IdType.AUTO)
     private Long catId;
 
     @ApiModelProperty("分类名称")

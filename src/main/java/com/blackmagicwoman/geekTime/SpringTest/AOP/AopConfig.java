@@ -2,6 +2,7 @@ package com.blackmagicwoman.geekTime.SpringTest.AOP;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,13 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class AopConfig {
-    @Before("execution(* com.blackmagicwoman.geekTime.SpringTest.AOP.AdminUserService.login(..)) ")
+    //@Before("execution(* com.blackmagicwoman.geekTime.SpringTest.AOP.AdminUserService.login(..)) ")
     public void logAdminLogin(JoinPoint pjp) throws Throwable {
+        System.out.println("! admin login ...");
+    }
+
+    //@Around("execution(* com.blackmagicwoman.mybatistest.controller.TestController.jsonRequest(..))")
+    public void jsonRequest(JoinPoint pjp) throws Throwable {
         System.out.println("! admin login ...");
     }
 }
