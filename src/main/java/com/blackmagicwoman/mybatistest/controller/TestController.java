@@ -5,15 +5,17 @@ import com.blackmagicwoman.mybatistest.entity.EmpEntity;
 import com.blackmagicwoman.mybatistest.entity.PmsCategory;
 import com.blackmagicwoman.mybatistest.mapper.PmsCategoryMapper;
 import com.blackmagicwoman.mybatistest.service.TestService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.cursor.Cursor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @program: mybatisTest
@@ -28,7 +30,8 @@ public class TestController {
 
     @Autowired
     private TestService testService ;
-
+    @Autowired
+    private ThreadBatchInsert batchInsert1;
     @Autowired
     private PmsCategoryMapper pmsCategoryMapper;
     @RequestMapping(value = "/get/{empNo}",method = RequestMethod.GET)
@@ -47,7 +50,7 @@ public class TestController {
     public EmpEntity getBody(@PathVariable Integer empNo){
         return testService.getById(empNo);
     }
-    @Transactional
+    //@Transactional
     @RequestMapping(value = "getCursor/{limit}" ,method = RequestMethod.POST)
     public void getCursor(@PathVariable Integer limit){
         Cursor<PmsCategory> cursor = pmsCategoryMapper.getCursor(limit);
@@ -58,4 +61,48 @@ public class TestController {
 //添加新分支
         //添加新分支2
     }
+    @RequestMapping(value = "getPage/{pageNum}/{pageSize}" ,method = RequestMethod.POST)
+    public PageInfo<PmsCategory> getPage(@PathVariable Integer pageNum,@PathVariable Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<PmsCategory> pmsCategories = pmsCategoryMapper.queryByPage(pageNum, pageSize);
+        PageInfo<PmsCategory> pmsCategoryPageInfo = new PageInfo<>(pmsCategories);
+        System.out.println("------------");
+        return pmsCategoryPageInfo;
+    }
+
+    @RequestMapping(value = "jsonRequest" ,method = RequestMethod.POST)
+    public void jsonRequest(@RequestBody PmsCategory pmsCategory){
+
+        System.out.println("------------");
+    }
+
+    @RequestMapping(value = "batchInsert1" ,method = RequestMethod.POST)
+    public void threadTest(){
+        int count=0;
+        List<List<PmsCategory>> ps = new ArrayList<>();
+        List<PmsCategory> pmsCategories=new ArrayList<>();
+        for (int i=1500;i<1600;i++){
+            count++;
+            if (count%10==0){
+                ps.add(pmsCategories);
+                pmsCategories= new ArrayList<>();
+            }
+            PmsCategory p = new PmsCategory();
+            p.setName("tomato"+i);
+            pmsCategories.add(p);
+
+        }
+
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 4, 100, TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(200), new ThreadTest.NameTreadFactory(), new ThreadTest.MyIgnorePolicy());
+        for (List<PmsCategory> pms :ps) {
+//            for (PmsCategory pmsCategory:pmsCategories){
+//                pmsCategoryMapper.insert(pmsCategory);
+//            }
+            batchInsert1.setPmsCategoryList(pms);
+            executor.execute(batchInsert1);
+        }
+        System.out.println("------------");
+    }
+
 }
