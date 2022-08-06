@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blackmagicwoman.mybatistest.mapper.DeptMapper">
+
+    <resultMap id="BaseResultMap" type="com.blackmagicwoman.mybatistest.entity.Dept" >
+        <result column="dept_no" property="deptNo" />
+        <result column="d_name" property="dName" />
+        <result column="loc" property="loc" />
+    </resultMap>
+
+    <resultMap id="BaseResultMapWithEmp" type="com.blackmagicwoman.mybatistest.entity.Dept" >
+        <result column="dept_no" property="deptNo" />
+        <result column="d_name" property="dName" />
+        <result column="loc" property="loc" />
+        <collection property="empList" ofType="emp">
+            <result property="comm" column="comm"/>
+            <result property="empNo" column="emp_no"/>
+            <result property="eName" column="e_name"/>
+            <result property="job" column="job"/>
+            <result property="mgr" column="mgr"/>
+            <result property="hireDate" column="hire_date"/>
+            <result property="sal" column="sal"/>
+            <result property="deptNo" column="dept_no"/>
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+        dept_no,
+                d_name,
+                loc
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.blackmagicwoman.mybatistest.entity.Dept">
+        INSERT INTO dept
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != deptNo and '' != deptNo">
+                dept_no,
+            </if>
+            <if test="null != dName and '' != dName">
+                d_name,
+            </if>
+            <if test="null != loc and '' != loc">
+                loc
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != deptNo and '' != deptNo">
+                #{deptNo},
+            </if>
+            <if test="null != dName and '' != dName">
+                #{dName},
+            </if>
+            <if test="null != loc and '' != loc">
+                #{loc}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM dept
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.blackmagicwoman.mybatistest.entity.Dept">
+        UPDATE dept
+        <set>
+            <if test="null != deptNo and '' != deptNo">dept_no = #{deptNo},</if>
+            <if test="null != dName and '' != dName">d_name = #{dName},</if>
+            <if test="null != loc and '' != loc">loc = #{loc}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM dept
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM dept
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM dept
+    </select>
+
+    <select id="selectDeptAndEmp" resultMap="BaseResultMapWithEmp">
+        select d.dept_no,d.d_name,d.loc,e.*
+            from dept d,emp e
+        where d.dept_no =e.dept_no and d.dept_no =#{id}
+    </select>
+</mapper>

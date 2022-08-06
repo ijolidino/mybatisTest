@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.blackmagicwoman.mybatistest.dao.TestDao">
+
+    <resultMap id="baseResultMap" type="com.blackmagicwoman.mybatistest.entity.EmpEntity">
+        <result property="comm" column="comm"></result>
+        <result property="empNo" column="emp_no"></result>
+        <result property="eName" column="e_name"></result>
+        <result property="job" column="job"></result>
+        <result property="mgr" column="mgr"></result>
+        <result property="hireDate" column="hire_date"></result>
+        <result property="sal" column="sal"></result>
+        <result property="deptNo" column="dept_no"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        emp_no,
+                e_name,
+                job,
+                mgr,
+                hire_date,
+                sal,
+                comm,
+                dept_no
+    </sql>
+
     <delete id="deleteNotIn">
         delete
         from emp
@@ -11,10 +34,10 @@
     </delete>
 
     <!-- 根据主键查询-->
-    <select id="getById" resultType="com.blackmagicwoman.mybatistest.entity.EmpEntity" parameterType="java.lang.Integer" >
+    <select id="getById" resultMap="baseResultMap" parameterType="java.lang.Integer" >
         select  *
         from emp
-        where emp_no = #{empNo}
+        where emp_no = #{empNo} limit 1
     </select>
 
     <select id="seleteNotIn" resultType="com.blackmagicwoman.mybatistest.entity.EmpEntity" parameterType="java.util.List">
@@ -28,5 +51,82 @@
 
     <select id="getCursor" resultType="com.blackmagicwoman.mybatistest.entity.EmpEntity" parameterType="java.lang.Integer">
         select * from pms_category limit #{limit}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.blackmagicwoman.mybatistest.entity.EmpEntity">
+        INSERT INTO emp
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != empNo and '' != empNo">
+                emp_no,
+            </if>
+            <if test="null != eName and '' != eName">
+                e_name,
+            </if>
+            <if test="null != job and '' != job">
+                job,
+            </if>
+            <if test="null != mgr and '' != mgr">
+                mgr,
+            </if>
+            <if test="null != hireDate and '' != hireDate">
+                hire_date,
+            </if>
+            <if test="null != sal and '' != sal">
+                sal,
+            </if>
+            <if test="null != comm and '' != comm">
+                comm,
+            </if>
+            <if test="null != deptNo and '' != deptNo">
+                dept_no
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != empNo and '' != empNo">
+                #{empNo},
+            </if>
+            <if test="null != eName and '' != eName">
+                #{eName},
+            </if>
+            <if test="null != job and '' != job">
+                #{job},
+            </if>
+            <if test="null != mgr and '' != mgr">
+                #{mgr},
+            </if>
+            <if test="null != hireDate and '' != hireDate">
+                #{hireDate},
+            </if>
+            <if test="null != sal and '' != sal">
+                #{sal},
+            </if>
+            <if test="null != comm and '' != comm">
+                #{comm},
+            </if>
+            <if test="null != deptNo and '' != deptNo">
+                #{deptNo}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.blackmagicwoman.mybatistest.entity.EmpEntity">
+        UPDATE emp
+        <set>
+            <if test="null != empNo and '' != empNo">emp_no = #{empNo},</if>
+            <if test="null != eName and '' != eName">e_name = #{eName},</if>
+            <if test="null != job and '' != job">job = #{job},</if>
+            <if test="null != mgr and '' != mgr">mgr = #{mgr},</if>
+            <if test="null != hireDate and '' != hireDate">hire_date = #{hireDate},</if>
+            <if test="null != sal and '' != sal">sal = #{sal},</if>
+            <if test="null != comm and '' != comm">comm = #{comm},</if>
+            <if test="null != deptNo and '' != deptNo">dept_no = #{deptNo}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="pageList" resultMap="baseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM emp
+        LIMIT #{offset}, #{pageSize}
     </select>
 </mapper>
