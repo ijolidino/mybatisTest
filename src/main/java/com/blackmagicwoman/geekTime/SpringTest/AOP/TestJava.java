@@ -1,12 +1,13 @@
 package com.blackmagicwoman.geekTime.SpringTest.AOP;
 
+import com.blackmagicwoman.mybatistest.entity.Dept;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @program: mybatisTest
@@ -38,6 +39,20 @@ public class TestJava {
         System.out.println(d.equals(b+c));
         System.out.println(dd==(bb+cc));
         System.out.println(dd.equals(ee));
+        ArrayList<Integer> collect = IntStream.range(0, 10).boxed().collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Integer> clone = (ArrayList<Integer>) collect.clone();
+        for (int i=0;i<clone.size();i++){
+            clone.set(i,clone.get(i)+1);
+        }
+        ThreadLocal<String> objectThreadLocal = new ThreadLocal<>();
+        ThreadLocal<String> objectThreadLocal1 = new ThreadLocal<>();
+        objectThreadLocal.set("123");
+        objectThreadLocal1.set("abc");
+        System.out.println("11");
+        HashMap<String, String> map1 = new HashMap<>();
+        Map<String, String> stringStringMap = Collections.synchronizedMap(map1);
+        stringStringMap.put("a","a");
+        System.out.println("111");
     }
     static class ThreadLocalExample implements Runnable{
 
@@ -67,5 +82,21 @@ public class TestJava {
 
             System.out.println("Thread Name= "+Thread.currentThread().getName()+" formatter = "+formatter.get().toPattern());
         }
+    }
+
+    /**
+     * 测试克隆
+     */
+    @Test
+    public void TestClone(){
+        ArrayList<IntTest> collect = IntStream.range(0, 10).mapToObj(IntTest::new).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<IntTest> clone = (ArrayList<IntTest>) collect.clone();
+        clone.forEach(IntTest::incr);
+        System.out.println("collect:"+ collect);
+        System.out.println("clone:"+clone);
+        IntTest a = new IntTest(6, 'a');
+        IntTest a1 = a.clone();
+        a.increment();
+        System.out.println(a1);
     }
 }

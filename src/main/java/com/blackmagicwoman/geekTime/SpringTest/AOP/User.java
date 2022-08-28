@@ -6,7 +6,7 @@ package com.blackmagicwoman.geekTime.SpringTest.AOP;
  * @author: Fuwen
  * @create: 2022-05-18 23:42
  **/
-public class User {
+public class User{
     private String payNum;
     public User(String payNum) {
         this.payNum = payNum;
@@ -17,4 +17,9 @@ public class User {
     public void setPayNum(String payNum) {
         this.payNum = payNum;
     }
+
+    public void incr(){
+        payNum+=1;
+    }
+
 }

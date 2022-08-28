@@ -17,7 +17,7 @@ public class EmpEntity implements Serializable {
 	/**
 	 * 员工编号
 	 */
-	private Integer empNo;
+	  Integer empNo;
 	/**
 	 * 员工姓名
 	 */
