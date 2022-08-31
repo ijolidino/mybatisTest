@@ -23,7 +23,7 @@ public class ThreadTest {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit,
                 workQueue, threadFactory, handler);
         executor.prestartAllCoreThreads(); // 预启动所有核心线程
-
+        int count=0;
         for (int i = 1; i <= 10; i++) {
             MyTask task = new MyTask(String.valueOf(i));
             executor.execute(task);
