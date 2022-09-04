@@ -26,6 +26,7 @@ public class ThreadTest {
         int count=0;
         for (int i = 1; i <= 10; i++) {
             MyTask task = new MyTask(String.valueOf(i));
+            System.out.println("第i个线程"+i);
             executor.execute(task);
         }
 
