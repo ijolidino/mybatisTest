@@ -25,7 +25,13 @@ public class summing {
     }
 
     public static final int count=1_000_000_000;
-
+    /**
+     * 结构
+     * countSum:0ms
+     * 简单流式0到count的简单求和:250ms
+     * 并行流式0到count的简单求和:62ms
+     * 迭代器迭代0到count的求和:704ms
+     */
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         long countSum=(long)count*((long) count+1)/2;
@@ -35,4 +41,5 @@ public class summing {
         countTime("并行流式0到count的简单求和",countSum,()->LongStream.rangeClosed(0,count).parallel().sum());
         countTime("迭代器迭代0到count的求和",countSum,()->LongStream.iterate(0,i->i+1).limit(count+1).sum());
     }
+
 }
