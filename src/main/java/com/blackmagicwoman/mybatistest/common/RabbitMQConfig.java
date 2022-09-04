@@ -27,6 +27,7 @@ public class RabbitMQConfig {
 
     @Test
     public void testPatten(){
+        int i=11;
         String quote = Pattern.quote("");
         System.out.println(quote);
     }
