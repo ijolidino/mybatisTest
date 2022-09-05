@@ -3,6 +3,7 @@ package com.blackmagicwoman.mybatistest.service.impl;
 import com.blackmagicwoman.mybatistest.entity.Dept;
 import com.blackmagicwoman.mybatistest.mapper.DeptMapper;
 import com.blackmagicwoman.mybatistest.service.DeptService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import java.util.Map;
  * @create: 2022-08-06 21:54
  **/
 @Service
+@Slf4j
 public class DeptServiceImpl implements DeptService {
 
     @Resource
@@ -57,7 +59,7 @@ public class DeptServiceImpl implements DeptService {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("pageList", pageList);
         result.put("totalCount", totalCount);
-
+        log.info("注册容器");
         return result;
     }
 
