@@ -9,6 +9,6 @@ public interface IBean2LineStrHandler<T>{
     String convert(T source);
 
     default String separator(){
-        return BaseConstants.DEFAULT_CHARACTER_SET
+        return BaseConstants.DEFAULT_CHARACTER_SET;
     }
 }

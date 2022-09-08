@@ -28,4 +28,6 @@ public interface PmsCategoryMapper {
     void batchInsert(@Param("list") List<PmsCategory> pmsCategories);
 
     void insert(PmsCategory pmsCategory);
+
+    List<PmsCategory> query(PmsCategory pmsCategory);
 }

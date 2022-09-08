@@ -1,6 +1,7 @@
 package com.blackmagicwoman.mybatistest;
 
 import cn.hutool.core.io.FileUtil;
+import com.blackmagicwoman.fileInputAndGenerate.BathFileWriter;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -13,17 +14,5 @@ import java.io.File;
  **/
 public class FileGeneratorTest {
 
-    @Test
-    public void TestGenerator(){
-        createFile();
 
-    }
-
-    private void createFile() {
-        File file = new File("/pmsCategory");
-        if (FileUtil.exist(file)){
-            FileUtil.del(file);
-        }
-        FileUtil.touch(file);
-    }
 }

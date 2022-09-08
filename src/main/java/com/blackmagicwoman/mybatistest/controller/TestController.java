@@ -1,5 +1,9 @@
 package com.blackmagicwoman.mybatistest.controller;
 
+import cn.hutool.core.io.FileUtil;
+import com.blackmagicwoman.fileInputAndGenerate.BaseConstants;
+import com.blackmagicwoman.fileInputAndGenerate.BathFileWriter;
+import com.blackmagicwoman.fileInputAndGenerate.IBean2LineStrHandler;
 import com.blackmagicwoman.mybatistest.entity.Emp;
 import com.blackmagicwoman.mybatistest.entity.EmpEntity;
 import com.blackmagicwoman.mybatistest.entity.PmsCategory;
@@ -11,6 +15,7 @@ import org.apache.ibatis.cursor.Cursor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -105,4 +110,30 @@ public class TestController {
         System.out.println("------------");
     }
 
+    public void TestGenerator(){
+        PmsCategory pmsCategory = new PmsCategory();
+
+        BathFileWriter bathFileWriter = new BathFileWriter<>("/pmsCategory.DAT",
+                (p) -> pmsCategoryMapper.query(p),
+                pmsCategory,
+                1000,
+                source -> {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.
+                    source.getCatId();
+                    return
+                },
+                BaseConstants.DEFAULT_CHARACTER_SET
+                );
+        createFile();
+
+    }
+
+    private void createFile() {
+        File file = new File("/pmsCategory");
+        if (FileUtil.exist(file)){
+            FileUtil.del(file);
+        }
+        FileUtil.touch(file);
+    }
 }

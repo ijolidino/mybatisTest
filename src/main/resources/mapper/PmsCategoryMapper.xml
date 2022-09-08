@@ -149,4 +149,7 @@
         SELECT count(1)
         FROM pms_category
     </select>
+    <select id="query" resultMap="BaseResultMap">
+        select * from pms_category
+    </select>
 </mapper>
