@@ -12,6 +12,7 @@ import com.blackmagicwoman.mybatistest.service.TestService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.cursor.Cursor;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -110,6 +111,7 @@ public class TestController {
         System.out.println("------------");
     }
 
+    @RequestMapping(value = "/batch/writeAllPmsCategory",method = RequestMethod.GET)
     public void TestGenerator(){
         PmsCategory pmsCategory = new PmsCategory();
 
@@ -117,16 +119,11 @@ public class TestController {
                 (p) -> pmsCategoryMapper.query(p),
                 pmsCategory,
                 1000,
-                source -> {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.
-                    source.getCatId();
-                    return
-                },
+                PmsCategory::toString,
                 BaseConstants.DEFAULT_CHARACTER_SET
                 );
         createFile();
-
+        bathFileWriter.startQueryAndWrite();
     }
 
     private void createFile() {
