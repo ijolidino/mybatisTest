@@ -1,4 +1,4 @@
-package com.blackmagicwoman.mybatistest.service;
+package com.blackmagicwoman.mybatistest.service.funtion;
 
 import com.blackmagicwoman.fileInputAndGenerate.IBean2LineStrHandler;
 
