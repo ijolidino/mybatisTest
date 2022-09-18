@@ -2,15 +2,18 @@ package com.blackmagicwoman.mybatistest;
 
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * @program: mybatisTest
@@ -20,12 +23,12 @@ import java.util.stream.IntStream;
  **/
 public class StreamTest {
     @Test
-    public void TestStream(){
-        List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5,5);
+    public void TestStream() {
+        List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5, 5);
         integers.stream().filter(i -> i == 5).findAny().ifPresent(StreamTest::testSprint);
         Optional<Integer> max = integers.stream().max(Comparator.comparingInt(Integer::intValue));
         Integer integer = max.orElse(1);
-        System.out.println("最大值"+integer);
+        System.out.println("最大值" + integer);
         int[] ints = IntStream.range(1, 100).toArray();
     }
 
@@ -40,10 +43,10 @@ public class StreamTest {
         System.out.println(reduce);
         List<List<Integer>> collect = IntStream.rangeClosed(1, 100).boxed()
                 .flatMap(a -> IntStream.rangeClosed(a, 1000).boxed()
-                        .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0&&Math.sqrt(a * a + b * b)<1000)
+                        .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0 && Math.sqrt(a * a + b * b) < 1000)
                         .map(b -> Arrays.asList(a, b, (int) Math.sqrt(a * a + b * b)))).collect(Collectors.toList());
-        System.out.println("1-100的三元g个数为:"+collect.size());
-        System.out.println("1-100的三元数为:"+collect);
+        System.out.println("1-100的三元g个数为:" + collect.size());
+        System.out.println("1-100的三元数为:" + collect);
         /**
          * 1-100的三元g个数为:222
          * 1-100的三元数为:[[3, 4, 5], [5, 12, 13], [6, 8, 10], [7, 24, 25], [8, 15, 17], [9, 12, 15], [9, 40, 41], [10, 24, 26], [11, 60, 61], [12, 16, 20], [12, 35, 37], [13, 84, 85],
@@ -73,9 +76,25 @@ public class StreamTest {
 
     @Test
     public void TestStreamFile() throws IOException {
-        File file = new File("/test.txt");
-        if (!file.exists()){
+        File file = new File("/testStreamFile.txt");
+        if (!file.exists()) {
             boolean newFile = file.createNewFile();
+            try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(file.toPath()), Charset.defaultCharset()))) {
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int i = 0; i <= 100; i++) {
+                    if (i % 10 == 0) {
+                        bufferedWriter.write(stringBuilder.toString());
+                        bufferedWriter.newLine();
+                        stringBuilder = new StringBuilder();
+                    }
+                    stringBuilder.append(i).append("↑");
+                }
+            }
         }
+        try (Stream<String> linesStream = Files.lines(Paths.get("/testStreamFile.txt"), Charset.defaultCharset())) {
+            linesStream.flatMap(l -> Arrays.stream(l.split("↑")))
+                    .forEach(System.out::println);
+        }
+        file.deleteOnExit();
     }
 }
