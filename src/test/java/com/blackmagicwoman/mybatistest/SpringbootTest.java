@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @program: mybatisTest
@@ -28,5 +31,17 @@ public class SpringbootTest {
     public void testApi(){
         List<PmsCategory> query = pmsCategoryMapper.query(new PmsCategory());
         System.out.println(query.toString());
+    }
+
+    @Test
+    public void TestPartition(){
+        List<PmsCategory> query = pmsCategoryMapper.query(new PmsCategory());
+        List<PmsCategory> collect1 = query.stream().filter(p -> p.getShowStatus() != null).collect(Collectors.toList());
+        Map<Boolean, List<PmsCategory>> collect = collect1.stream().collect(Collectors.partitioningBy(p -> p.getShowStatus().equals(1)));
+        System.out.println(collect);
+        Map<Long, List<PmsCategory>> collect2 = collect1.stream().collect(Collectors.groupingBy(PmsCategory::getParentCid));
+        System.out.println(collect2);
+        Map<Long, Map<Long, List<PmsCategory>>> collect3 = collect1.stream().collect(Collectors.groupingBy(PmsCategory::getParentCid, Collectors.groupingBy(PmsCategory::getCatId)));
+        System.out.println(collect3);
     }
 }
