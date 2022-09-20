@@ -7,6 +7,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -35,6 +38,10 @@ public class SpringbootTest {
 
     @Test
     public void TestPartition(){
+        HashMap<String, Object> map = new HashMap<>();
+        List<String> strings = Arrays.asList("手机", "家用电器");
+        map.put("names",strings);
+        List<PmsCategory> pmsCategories = pmsCategoryMapper.queryListByCondFromMap(map);
         List<PmsCategory> query = pmsCategoryMapper.query(new PmsCategory());
         List<PmsCategory> collect1 = query.stream().filter(p -> p.getShowStatus() != null).collect(Collectors.toList());
         Map<Boolean, List<PmsCategory>> collect = collect1.stream().collect(Collectors.partitioningBy(p -> p.getShowStatus().equals(1)));

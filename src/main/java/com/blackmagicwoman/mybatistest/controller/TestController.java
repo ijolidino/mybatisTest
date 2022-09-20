@@ -11,6 +11,7 @@ import com.blackmagicwoman.mybatistest.mapper.PmsCategoryMapper;
 import com.blackmagicwoman.mybatistest.service.TestService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.cursor.Cursor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -32,6 +35,7 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/demoproject/test")
+@Slf4j
 public class TestController {
 
     @Autowired
@@ -132,5 +136,16 @@ public class TestController {
             FileUtil.del(file);
         }
         FileUtil.touch(file);
+    }
+
+    @RequestMapping(value = "/query/queryByMap",method = RequestMethod.GET)
+    public void queryByMap(){
+        log.info("开始日志");
+        HashMap<String, Object> map = new HashMap<>();
+        List<String> strings = Arrays.asList("手机", "家用电器");
+        String [] strings1={"手机", "家用电器"};
+        map.put("names",strings1);
+        List<PmsCategory> pmsCategories = pmsCategoryMapper.queryListByCondFromMap(map);
+        System.out.println(pmsCategories);
     }
 }

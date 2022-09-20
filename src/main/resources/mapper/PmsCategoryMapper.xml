@@ -5,24 +5,25 @@
     <select id="getCursor"  resultType="com.blackmagicwoman.mybatistest.entity.PmsCategory" parameterType="integer">
         select * from pms_category limit #{limit}
     </select>
-<!--    <select id="queryByPage" resultType="com.blackmagicwoman.mybatistest.entity.PmsCategory">-->
-<!--        select * from pms_category-->
-<!--    </select>-->
+    <!--    <select id="queryByPage" resultType="com.blackmagicwoman.mybatistest.entity.PmsCategory">-->
+    <!--        select * from pms_category-->
+    <!--    </select>-->
 
-    <resultMap id="BaseResultMap" type="com.blackmagicwoman.mybatistest.entity.PmsCategory" >
-        <result column="cat_id" property="catId" />
-        <result column="name" property="name" />
-        <result column="parent_cid" property="parentCid" />
-        <result column="cat_level" property="catLevel" />
-        <result column="show_status" property="showStatus" />
-        <result column="sort" property="sort" />
-        <result column="icon" property="icon" />
-        <result column="product_unit" property="productUnit" />
-        <result column="product_count" property="productCount" />
+    <resultMap id="BaseResultMap" type="com.blackmagicwoman.mybatistest.entity.PmsCategory">
+        <result column="cat_id" property="catId"/>
+        <result column="name" property="name"/>
+        <result column="parent_cid" property="parentCid"/>
+        <result column="cat_level" property="catLevel"/>
+        <result column="show_status" property="showStatus"/>
+        <result column="sort" property="sort"/>
+        <result column="icon" property="icon"/>
+        <result column="product_unit" property="productUnit"/>
+        <result column="product_count" property="productCount"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        cat_id,
+        cat_id
+        ,
                 name,
                 parent_cid,
                 cat_level,
@@ -96,8 +97,8 @@
     </insert>
 
     <insert id="batchInsert">
-    insert into pms_category
-    (cat_id,
+        insert into pms_category
+        (cat_id,
         name,
         parent_cid,
         cat_level,
@@ -106,13 +107,15 @@
         icon,
         product_unit,
         product_count)
-    values  <foreach collection="list" item="item" separator="," open="(" close=")">
-        (#{item.catId},#{item.name},#{item.parentCid},#{item.catLevel},#{item.showStatus},#{item.sort},#{item.icon},#{item.productUnit},#{item.productCount})
-    </foreach>
+        values
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            (#{item.catId},#{item.name},#{item.parentCid},#{item.catLevel},#{item.showStatus},#{item.sort},#{item.icon},#{item.productUnit},#{item.productCount})
+        </foreach>
     </insert>
 
-    <delete id="delete" >
-        DELETE FROM pms_category
+    <delete id="delete">
+        DELETE
+        FROM pms_category
         WHERE id = #{id}
     </delete>
 
@@ -134,13 +137,15 @@
 
 
     <select id="load" resultMap="BaseResultMap">
-        SELECT <include refid="Base_Column_List" />
+        SELECT
+        <include refid="Base_Column_List"/>
         FROM pms_category
         WHERE id = #{id}
     </select>
 
     <select id="pageList" resultMap="BaseResultMap">
-        SELECT <include refid="Base_Column_List" />
+        SELECT
+        <include refid="Base_Column_List"/>
         FROM pms_category
         LIMIT #{offset}, #{pageSize}
     </select>
@@ -149,7 +154,38 @@
         SELECT count(1)
         FROM pms_category
     </select>
+
     <select id="query" resultMap="BaseResultMap">
-        select * from pms_category
+        select *
+        from pms_category
+    </select>
+
+    <select id="queryListByCondFromMap" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from pms_category
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="null != catId and '' != catId">and cat_id = #{catId}</if>
+            <if test="null != name and '' != name">and name = #{name}</if>
+            <if test="null != parentCid and '' != parentCid">and parent_cid = #{parentCid}</if>
+            <if test="null != catLevel and '' != catLevel">and cat_level = #{catLevel}</if>
+            <if test="null != showStatus and '' != showStatus">and show_status = #{showStatus}</if>
+            <if test="null != sort and '' != sort">and sort = #{sort}</if>
+            <if test="null != icon and '' != icon">and icon = #{icon}</if>
+            <if test="null != productUnit and '' != productUnit">and product_unit = #{productUnit}</if>
+            <if test="null != productCount and '' != productCount">and product_count = #{productCount}</if>
+            <if test="catIds!=null and catIds.size()!=0">
+                and catId in
+                <foreach collection="catIds" item="catId" open="(" separator="," close=")">
+                    #{catId}
+                </foreach>
+            </if>
+            <if test="names!=null and names!=''">
+                and name in
+                <foreach collection="names" index="index" item="name" open="(" separator="," close=")">
+                    #{name}
+                </foreach>
+            </if>
+</trim>
     </select>
 </mapper>

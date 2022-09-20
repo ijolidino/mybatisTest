@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.cursor.Cursor;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -30,4 +31,6 @@ public interface PmsCategoryMapper {
     void insert(PmsCategory pmsCategory);
 
     List<PmsCategory> query(PmsCategory pmsCategory);
+
+    List<PmsCategory> queryListByCondFromMap(Map<String,Object> map);
 }
