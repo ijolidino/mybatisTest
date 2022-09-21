@@ -147,5 +147,6 @@ public class TestController {
         map.put("names",strings1);
         List<PmsCategory> pmsCategories = pmsCategoryMapper.queryListByCondFromMap(map);
         System.out.println(pmsCategories);
+        log.info(pmsCategories.toString());
     }
 }
