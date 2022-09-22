@@ -148,5 +148,6 @@ public class TestController {
         List<PmsCategory> pmsCategories = pmsCategoryMapper.queryListByCondFromMap(map);
         System.out.println(pmsCategories);
         log.info(pmsCategories.toString());
+        //rocketmq太难了
     }
 }
