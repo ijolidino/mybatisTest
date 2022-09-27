@@ -50,6 +50,6 @@ public class SpringbootTest {
         System.out.println(collect2);
         Map<Long, Map<Long, List<PmsCategory>>> collect3 = collect1.stream().collect(Collectors.groupingBy(PmsCategory::getParentCid, Collectors.groupingBy(PmsCategory::getCatId)));
         System.out.println(collect3);
-        System.out.println("今日休息，想谈恋爱");
+        System.out.println("今天还是不想写代码，看看java8");
     }
 }
