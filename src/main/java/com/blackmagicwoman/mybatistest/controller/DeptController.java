@@ -1,6 +1,7 @@
 package com.blackmagicwoman.mybatistest.controller;
 
 import com.blackmagicwoman.mybatistest.entity.Dept;
+import com.blackmagicwoman.mybatistest.mapper.DeptMapper;
 import com.blackmagicwoman.mybatistest.service.DeptService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,8 @@ public class DeptController {
 
     @Resource
     private DeptService deptService;
+    @Resource
+    private DeptMapper deptMapper;
 
     /**
      * 新增
@@ -77,5 +80,10 @@ public class DeptController {
     @RequestMapping("/selectdeptWithEmp/{id}")
     public Dept selectdeptWithEmp(@PathVariable int id){
         return deptService.selectDeptAndEmp(id);
+    }
+
+    @RequestMapping("/selectById?{id}")
+    public Dept selectById(@PathVariable int id){
+        return deptMapper.selectById(id);
     }
 }

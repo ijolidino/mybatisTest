@@ -59,4 +59,6 @@ public interface DeptMapper {
     int pageListCount(int offset,int pagesize);
 
     Dept selectDeptAndEmp(int id);
+
+    Dept selectById(int id);
 }

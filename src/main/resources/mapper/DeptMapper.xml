@@ -94,4 +94,6 @@
             from dept d,emp e
         where d.dept_no =e.dept_no and d.dept_no =#{id}
     </select>
+
+    <select id="selectById" resultType="com.blackmagicwoman.mybatistest.entity.Dept"></select>
 </mapper>
