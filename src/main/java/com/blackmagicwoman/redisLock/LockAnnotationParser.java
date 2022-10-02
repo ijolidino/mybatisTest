@@ -2,6 +2,7 @@ package com.blackmagicwoman.redisLock;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -27,7 +28,7 @@ public class LockAnnotationParser {
     /**
      * 定义切点
      */
-    @Pointcut(value = "@annotation(com.sdebank.ngdb.ccms.base.common.lock.annotation.RedisLock)")
+    @Pointcut(value = "@annotation(com.blackmagicwoman.redisLock.RedisLock)")
     private void cutMethod() {
     }
     /**
@@ -43,11 +44,11 @@ public class LockAnnotationParser {
         if(StringUtils.isNotEmpty(redisLock.prefix())){
             key = redisLock.prefix()+key;
         }
-        redisLockUtils.tryLmtLock(key,redisLock.loop(),redisLock.interval(),redisLock.expireTime());
+        redisLockUtils.tryLock(key,redisLock.loop(),redisLock.interval(),redisLock.expireTime());
         try {
             return point.proceed();
         } finally {
-            redisLockUtils.unLmtLock(value);
+            redisLockUtils.unLock(value);
         }
     }
     /**
