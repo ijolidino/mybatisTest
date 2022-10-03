@@ -23,12 +23,12 @@ public class RedisLockUtils {
 
     /**
      * Redis 编号加分布式加锁 默认循环5次，每次间隔1秒；加锁生效时间为3分钟
-     * @param Nokey 编号
+     * @param nokey 编号
      * @return
      */
-    public boolean tryLock(String Nokey){
+    public boolean tryLock(String nokey){
         int loop = 5;//循环5次
-        return tryLock(Nokey,loop);
+        return tryLock(nokey,loop);
     }
 
     /**
