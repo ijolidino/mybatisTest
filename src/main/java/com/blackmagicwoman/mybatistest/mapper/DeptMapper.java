@@ -1,6 +1,7 @@
 package com.blackmagicwoman.mybatistest.mapper;
 
 import com.blackmagicwoman.mybatistest.entity.Dept;
+import com.blackmagicwoman.redisLock.RedisLock;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +22,7 @@ public interface DeptMapper {
      * @author zhengkai.blog.csdn.net
      * @date 2022/08/06
      **/
+    @RedisLock(value = "")
     int insert(Dept dept);
 
     /**
