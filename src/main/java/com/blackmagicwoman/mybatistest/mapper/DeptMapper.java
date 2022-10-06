@@ -22,7 +22,7 @@ public interface DeptMapper {
      * @author zhengkai.blog.csdn.net
      * @date 2022/08/06
      **/
-    @RedisLock(value = "")
+    @RedisLock(value = "com.blackmagicwoman.redisLock.LockAnnotationParser.getByEl")
     int insert(Dept dept);
 
     /**
