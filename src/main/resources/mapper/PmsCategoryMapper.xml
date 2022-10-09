@@ -188,4 +188,44 @@
             </if>
 </trim>
     </select>
+
+
+    <select id="queryListByCond" resultType="com.blackmagicwoman.mybatistest.entity.PmsCategory">
+<!--https://www.cnblogs.com/one-gril/p/11323759.html-->
+        select t.*, (@i:=@i+1) as rankVal from (
+        select
+        <choose>
+            <when test="searchType != null and searchType ==1">
+                s.org_name
+            </when>
+            <otherwise>s.emp_name</otherwise>
+        </choose>
+        custMgrNm,count(distinct ccclof.loan_on_flow_srl_no) onFlowFileNum
+        from ccms_crp_corprtn_loan_on_flow ccclof
+        <choose>
+            <when test="searchType != null and searchType ==1">
+                left join sys_org s on s.org_code = ccclof.subbr_inst_no
+            </when>
+            <otherwise>left join sys_user s on s.emp_no = ccclof.crt_tlr_no</otherwise>
+        </choose>
+        <where>
+            <if test="subbrInstNo!=null  and subbrInstNo!=''">and ccclof.subbr_inst_no = #{subbrInstNo}</if>
+            <!--有开始时间和结束时间就用这个区间查询，没有查当前季度-->
+            <choose>
+                <when test="bgnDt != null and bgnDt != '' and ddlnDt != null and ddlnDt != ''">
+                    and ccclof.crt_tmstmp between #{bgnDt} and #{ddlnDt}
+                </when>
+                <!--MySQL中的QUARTER()函数用于返回给定日期值的一年的季度。它返回一个从1到4的数字。-->
+                <otherwise>and quarter(ccclof.crt_tmstmp) = quarter(now())</otherwise>
+            </choose>
+        </where>
+        <choose>
+            <when test="searchType != null and searchType ==1">
+                group by ccclof.subbr_inst_no
+            </when>
+            <otherwise>group by ccclof.crt_tlr_no</otherwise>
+        </choose>
+        order by count(distinct ccclof.loan_on_flow_srl_no) desc
+        )t,(select @i:=0) as i order by onFlowFileNum desc
+    </select>
 </mapper>
