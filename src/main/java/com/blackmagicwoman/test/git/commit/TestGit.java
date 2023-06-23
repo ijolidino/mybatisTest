@@ -13,5 +13,6 @@ public class TestGit {
 
     public static void main(String[] args) {
         log.info("这是第一次提交的内容");
+        log.info("这是第二次提交的内容");
     }
 }
