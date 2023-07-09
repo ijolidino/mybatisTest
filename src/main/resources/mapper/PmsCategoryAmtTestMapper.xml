@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blackmagicwoman.mybatistest.mapper.PmsCategoryAmtTestMapper">
+
+    <resultMap id="BaseResultMap" type="com.blackmagicwoman.file.input.entity.PmsCategoryAmtTest">
+        <result column="cat_id" property="catId"/>
+        <result column="amt0" property="amt0"/>
+        <result column="amt1" property="amt1"/>
+        <result column="amt2" property="amt2"/>
+        <result column="amt3" property="amt3"/>
+        <result column="amt4" property="amt4"/>
+        <result column="amt5" property="amt5"/>
+        <result column="amt6" property="amt6"/>
+        <result column="amt7" property="amt7"/>
+        <result column="amt8" property="amt8"/>
+        <result column="amt9" property="amt9"/>
+        <result column="amt10" property="amt10"/>
+        <result column="amt11" property="amt11"/>
+        <result column="amt12" property="amt12"/>
+        <result column="amt13" property="amt13"/>
+        <result column="amt14" property="amt14"/>
+        <result column="amt15" property="amt15"/>
+        <result column="amt16" property="amt16"/>
+        <result column="amt17" property="amt17"/>
+        <result column="amt18" property="amt18"/>
+        <result column="amt19" property="amt19"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        cat_id,amt0,amt1,amt2,amt3,amt4,amt5,amt6,amt7,amt8,amt9,amt10,amt11,amt12,amt13,amt14,amt15,amt16,amt17,amt18,amt19
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
+            parameterType="com.blackmagicwoman.file.input.entity.PmsCategoryAmtTest">
+        INSERT INTO pms_category_amt_test
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != catId and '' != catId">
+                cat_id,
+            </if>
+            <if test="null != amt0 and '' != amt0">
+                amt0,
+            </if>
+            <if test="null != amt1 and '' != amt1">
+                amt1,
+            </if>
+            <if test="null != amt2 and '' != amt2">
+                amt2,
+            </if>
+            <if test="null != amt3 and '' != amt3">
+                amt3,
+            </if>
+            <if test="null != amt4 and '' != amt4">
+                amt4,
+            </if>
+            <if test="null != amt5 and '' != amt5">
+                amt5,
+            </if>
+            <if test="null != amt6 and '' != amt6">
+                amt6,
+            </if>
+            <if test="null != amt7 and '' != amt7">
+                amt7,
+            </if>
+            <if test="null != amt8 and '' != amt8">
+                amt8,
+            </if>
+            <if test="null != amt9 and '' != amt9">
+                amt9,
+            </if>
+            <if test="null != amt10 and '' != amt10">
+                amt10,
+            </if>
+            <if test="null != amt11 and '' != amt11">
+                amt11,
+            </if>
+            <if test="null != amt12 and '' != amt12">
+                amt12,
+            </if>
+            <if test="null != amt13 and '' != amt13">
+                amt13,
+            </if>
+            <if test="null != amt14 and '' != amt14">
+                amt14,
+            </if>
+            <if test="null != amt15 and '' != amt15">
+                amt15,
+            </if>
+            <if test="null != amt16 and '' != amt16">
+                amt16,
+            </if>
+            <if test="null != amt17 and '' != amt17">
+                amt17,
+            </if>
+            <if test="null != amt18 and '' != amt18">
+                amt18,
+            </if>
+            <if test="null != amt19 and '' != amt19">
+                amt19
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != catId and '' != catId">
+                #{catId},
+            </if>
+            <if test="null != amt0 and '' != amt0">
+                #{amt0},
+            </if>
+            <if test="null != amt1 and '' != amt1">
+                #{amt1},
+            </if>
+            <if test="null != amt2 and '' != amt2">
+                #{amt2},
+            </if>
+            <if test="null != amt3 and '' != amt3">
+                #{amt3},
+            </if>
+            <if test="null != amt4 and '' != amt4">
+                #{amt4},
+            </if>
+            <if test="null != amt5 and '' != amt5">
+                #{amt5},
+            </if>
+            <if test="null != amt6 and '' != amt6">
+                #{amt6},
+            </if>
+            <if test="null != amt7 and '' != amt7">
+                #{amt7},
+            </if>
+            <if test="null != amt8 and '' != amt8">
+                #{amt8},
+            </if>
+            <if test="null != amt9 and '' != amt9">
+                #{amt9},
+            </if>
+            <if test="null != amt10 and '' != amt10">
+                #{amt10},
+            </if>
+            <if test="null != amt11 and '' != amt11">
+                #{amt11},
+            </if>
+            <if test="null != amt12 and '' != amt12">
+                #{amt12},
+            </if>
+            <if test="null != amt13 and '' != amt13">
+                #{amt13},
+            </if>
+            <if test="null != amt14 and '' != amt14">
+                #{amt14},
+            </if>
+            <if test="null != amt15 and '' != amt15">
+                #{amt15},
+            </if>
+            <if test="null != amt16 and '' != amt16">
+                #{amt16},
+            </if>
+            <if test="null != amt17 and '' != amt17">
+                #{amt17},
+            </if>
+            <if test="null != amt18 and '' != amt18">
+                #{amt18},
+            </if>
+            <if test="null != amt19 and '' != amt19">
+                #{amt19}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        DELETE
+        FROM pms_category_amt_test
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.blackmagicwoman.file.input.entity.PmsCategoryAmtTest">
+        UPDATE pms_category_amt_test
+        <set>
+            <if test="null != catId and '' != catId">cat_id = #{catId},</if>
+            <if test="null != amt0 and '' != amt0">amt0 = #{amt0},</if>
+            <if test="null != amt1 and '' != amt1">amt1 = #{amt1},</if>
+            <if test="null != amt2 and '' != amt2">amt2 = #{amt2},</if>
+            <if test="null != amt3 and '' != amt3">amt3 = #{amt3},</if>
+            <if test="null != amt4 and '' != amt4">amt4 = #{amt4},</if>
+            <if test="null != amt5 and '' != amt5">amt5 = #{amt5},</if>
+            <if test="null != amt6 and '' != amt6">amt6 = #{amt6},</if>
+            <if test="null != amt7 and '' != amt7">amt7 = #{amt7},</if>
+            <if test="null != amt8 and '' != amt8">amt8 = #{amt8},</if>
+            <if test="null != amt9 and '' != amt9">amt9 = #{amt9},</if>
+            <if test="null != amt10 and '' != amt10">amt10 = #{amt10},</if>
+            <if test="null != amt11 and '' != amt11">amt11 = #{amt11},</if>
+            <if test="null != amt12 and '' != amt12">amt12 = #{amt12},</if>
+            <if test="null != amt13 and '' != amt13">amt13 = #{amt13},</if>
+            <if test="null != amt14 and '' != amt14">amt14 = #{amt14},</if>
+            <if test="null != amt15 and '' != amt15">amt15 = #{amt15},</if>
+            <if test="null != amt16 and '' != amt16">amt16 = #{amt16},</if>
+            <if test="null != amt17 and '' != amt17">amt17 = #{amt17},</if>
+            <if test="null != amt18 and '' != amt18">amt18 = #{amt18},</if>
+            <if test="null != amt19 and '' != amt19">amt19 = #{amt19}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM pms_category_amt_test
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM pms_category_amt_test
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM pms_category_amt_test
+    </select>
+
+    <insert id="batchInsert">
+        insert into pms_category_amt_test
+        (cat_id,amt0,amt1,amt2,amt3,amt4,amt5,amt6,amt7,amt8,amt9,amt10,amt11,amt12,amt13,amt14,amt15,amt16,amt17,amt18,amt19)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.catId},#{item.amt0},#{item.amt1},#{item.amt2},#{item.amt3},#{item.amt4},#{item.amt5},#{item.amt6},#{item.amt7},#{item.amt8},#{item.amt9},#{item.amt10},#{item.amt11},#{item.amt12},#{item.amt13},#{item.amt14},#{item.amt15},#{item.amt16},#{item.amt17},#{item.amt18},#{item.amt19})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsert1">
+        insert into pms_category_amt_test1
+        (cat_id,amt0,amt1,amt2,amt3,amt4,amt5,amt6,amt7,amt8,amt9,amt10,amt11,amt12,amt13,amt14,amt15,amt16,amt17,amt18,amt19)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.catId},#{item.amt0},#{item.amt1},#{item.amt2},#{item.amt3},#{item.amt4},#{item.amt5},#{item.amt6},#{item.amt7},#{item.amt8},#{item.amt9},#{item.amt10},#{item.amt11},#{item.amt12},#{item.amt13},#{item.amt14},#{item.amt15},#{item.amt16},#{item.amt17},#{item.amt18},#{item.amt19})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsert2">
+        insert into pms_category_amt_test2
+        (cat_id,amt0,amt1,amt2,amt3,amt4,amt5,amt6,amt7,amt8,amt9,amt10,amt11,amt12,amt13,amt14,amt15,amt16,amt17,amt18,amt19)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.catId},#{item.amt0},#{item.amt1},#{item.amt2},#{item.amt3},#{item.amt4},#{item.amt5},#{item.amt6},#{item.amt7},#{item.amt8},#{item.amt9},#{item.amt10},#{item.amt11},#{item.amt12},#{item.amt13},#{item.amt14},#{item.amt15},#{item.amt16},#{item.amt17},#{item.amt18},#{item.amt19})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsert3">
+        insert into pms_category_amt_test3
+        (cat_id,amt0,amt1,amt2,amt3,amt4,amt5,amt6,amt7,amt8,amt9,amt10,amt11,amt12,amt13,amt14,amt15,amt16,amt17,amt18,amt19)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.catId},#{item.amt0},#{item.amt1},#{item.amt2},#{item.amt3},#{item.amt4},#{item.amt5},#{item.amt6},#{item.amt7},#{item.amt8},#{item.amt9},#{item.amt10},#{item.amt11},#{item.amt12},#{item.amt13},#{item.amt14},#{item.amt15},#{item.amt16},#{item.amt17},#{item.amt18},#{item.amt19})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsert4">
+        insert into pms_category_amt_test4
+        (cat_id,amt0,amt1,amt2,amt3,amt4,amt5,amt6,amt7,amt8,amt9,amt10,amt11,amt12,amt13,amt14,amt15,amt16,amt17,amt18,amt19)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.catId},#{item.amt0},#{item.amt1},#{item.amt2},#{item.amt3},#{item.amt4},#{item.amt5},#{item.amt6},#{item.amt7},#{item.amt8},#{item.amt9},#{item.amt10},#{item.amt11},#{item.amt12},#{item.amt13},#{item.amt14},#{item.amt15},#{item.amt16},#{item.amt17},#{item.amt18},#{item.amt19})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsert5">
+        insert into pms_category_amt_test5
+        (cat_id,amt0,amt1,amt2,amt3,amt4,amt5,amt6,amt7,amt8,amt9,amt10,amt11,amt12,amt13,amt14,amt15,amt16,amt17,amt18,amt19)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.catId},#{item.amt0},#{item.amt1},#{item.amt2},#{item.amt3},#{item.amt4},#{item.amt5},#{item.amt6},#{item.amt7},#{item.amt8},#{item.amt9},#{item.amt10},#{item.amt11},#{item.amt12},#{item.amt13},#{item.amt14},#{item.amt15},#{item.amt16},#{item.amt17},#{item.amt18},#{item.amt19})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsert6">
+        insert into pms_category_amt_test6
+        (cat_id,amt0,amt1,amt2,amt3,amt4,amt5,amt6,amt7,amt8,amt9,amt10,amt11,amt12,amt13,amt14,amt15,amt16,amt17,amt18,amt19)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.catId},#{item.amt0},#{item.amt1},#{item.amt2},#{item.amt3},#{item.amt4},#{item.amt5},#{item.amt6},#{item.amt7},#{item.amt8},#{item.amt9},#{item.amt10},#{item.amt11},#{item.amt12},#{item.amt13},#{item.amt14},#{item.amt15},#{item.amt16},#{item.amt17},#{item.amt18},#{item.amt19})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsert7">
+        insert into pms_category_amt_test7
+        (cat_id,amt0,amt1,amt2,amt3,amt4,amt5,amt6,amt7,amt8,amt9,amt10,amt11,amt12,amt13,amt14,amt15,amt16,amt17,amt18,amt19)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.catId},#{item.amt0},#{item.amt1},#{item.amt2},#{item.amt3},#{item.amt4},#{item.amt5},#{item.amt6},#{item.amt7},#{item.amt8},#{item.amt9},#{item.amt10},#{item.amt11},#{item.amt12},#{item.amt13},#{item.amt14},#{item.amt15},#{item.amt16},#{item.amt17},#{item.amt18},#{item.amt19})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsert8">
+        insert into pms_category_amt_test8
+        (cat_id,amt0,amt1,amt2,amt3,amt4,amt5,amt6,amt7,amt8,amt9,amt10,amt11,amt12,amt13,amt14,amt15,amt16,amt17,amt18,amt19)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.catId},#{item.amt0},#{item.amt1},#{item.amt2},#{item.amt3},#{item.amt4},#{item.amt5},#{item.amt6},#{item.amt7},#{item.amt8},#{item.amt9},#{item.amt10},#{item.amt11},#{item.amt12},#{item.amt13},#{item.amt14},#{item.amt15},#{item.amt16},#{item.amt17},#{item.amt18},#{item.amt19})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsert9">
+        insert into pms_category_amt_test9
+        (cat_id,amt0,amt1,amt2,amt3,amt4,amt5,amt6,amt7,amt8,amt9,amt10,amt11,amt12,amt13,amt14,amt15,amt16,amt17,amt18,amt19)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.catId},#{item.amt0},#{item.amt1},#{item.amt2},#{item.amt3},#{item.amt4},#{item.amt5},#{item.amt6},#{item.amt7},#{item.amt8},#{item.amt9},#{item.amt10},#{item.amt11},#{item.amt12},#{item.amt13},#{item.amt14},#{item.amt15},#{item.amt16},#{item.amt17},#{item.amt18},#{item.amt19})
+        </foreach>
+    </insert>
+</mapper>
