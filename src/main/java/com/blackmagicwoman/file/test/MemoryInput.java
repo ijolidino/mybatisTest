@@ -13,6 +13,6 @@ import java.io.StringReader;
 public class MemoryInput {
 
     public static void main(String[] args) {
-
+        System.out.printf("测试提交是否有邮件");
     }
 }
