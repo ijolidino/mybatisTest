@@ -31,6 +31,9 @@ public class ThreadTest {
         }
 
         System.in.read(); //阻塞主线程
+        CompletableFuture.runAsync(()->{
+
+        });
     }
 
     static class NameTreadFactory implements ThreadFactory {
