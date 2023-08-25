@@ -2,6 +2,7 @@ package com.blackmagicwoman.mybatistest.controller;
 
 import com.blackmagicwoman.mybatistest.entity.PmsCategory;
 import com.blackmagicwoman.mybatistest.mapper.PmsCategoryMapper;
+import io.swagger.annotations.Scope;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
