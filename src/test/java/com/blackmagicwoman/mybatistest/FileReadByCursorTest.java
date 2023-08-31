@@ -6,6 +6,7 @@ import com.blackmagicwoman.mybatistest.entity.PmsCategory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import java.io.*;
+import java.nio.file.Files;
 
 /**
  * @program: mybatisTest
@@ -17,7 +18,7 @@ import java.io.*;
 public class FileReadByCursorTest {
 
     @Test
-    public void ReadTest(){
+    public void ReadTest() {
         //读取的文件
         File file = new File("/pmsCategory.DAT");
         try(BufferedReader bufferedReader=new BufferedReader(new FileReader(file));
