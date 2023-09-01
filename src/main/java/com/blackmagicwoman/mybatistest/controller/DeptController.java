@@ -3,10 +3,12 @@ package com.blackmagicwoman.mybatistest.controller;
 import com.blackmagicwoman.mybatistest.entity.Dept;
 import com.blackmagicwoman.mybatistest.mapper.DeptMapper;
 import com.blackmagicwoman.mybatistest.service.DeptService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.blackmagicwoman.mybatistest.service.TestService;
+import com.blackmagicwoman.query.QueryAndInsertDB;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -20,19 +22,26 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/dept")
 public class DeptController {
-
+    @Autowired
+    private TestController testController;
     @Resource
     private DeptService deptService;
     @Resource
     private DeptMapper deptMapper;
-
+    @Resource
+    private TestService testService ;
+    @Value("${server.port}")
+    private String port;
+    @Resource(name = "asyncThreadExecutor")
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
     /**
      * 新增
      * @author zhengkai.blog.csdn.net
      * @date 2022/08/06
      **/
-    @RequestMapping("/insert")
-    public void insert(Dept dept){
+    @PostMapping(value = "/insert")
+    public void insert(@RequestBody Dept dept){
+        testController.queryAndBackUp(1);
          deptService.insert(dept);
     }
 
@@ -79,6 +88,9 @@ public class DeptController {
 
     @RequestMapping("/selectdeptWithEmp/{id}")
     public Dept selectdeptWithEmp(@PathVariable int id){
+        String ports=this.port;
+        System.out.println("port:"+ports);
+        System.out.println(testService.isCanInsert());
         return deptService.selectDeptAndEmp(id);
     }
 
