@@ -3,6 +3,7 @@ package com.blackmagicwoman.mybatistest.mapper;
 import com.blackmagicwoman.mybatistest.entity.Dept;
 import com.blackmagicwoman.redisLock.RedisLock;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public interface DeptMapper {
      * @author zhengkai.blog.csdn.net
      * @date 2022/08/06
      **/
-    Dept load(int id);
+    Dept load(@Param("id") int id);
 
     /**
      * 查询 分页查询
@@ -63,4 +64,6 @@ public interface DeptMapper {
     Dept selectDeptAndEmp(int id);
 
     Dept selectById(int id);
+
+    List<Dept> loadAll(Dept dept);
 }
