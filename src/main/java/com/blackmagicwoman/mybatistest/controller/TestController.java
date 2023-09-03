@@ -54,7 +54,9 @@ private DeptController deptController;
     private PmsCategoryAmtTestMapper pmsCategoryAmtTestMapper;
     @RequestMapping(value = "/get/{empNo}",method = RequestMethod.GET)
     public EmpEntity test(@PathVariable Integer empNo){
+        deptController.selectdeptWithEmp(1);
         System.out.println("empNo:" + empNo);
+        System.out.println(testService.isCanInsert());
         return testService.getById(empNo);
     }
 
@@ -90,8 +92,16 @@ private DeptController deptController;
 
     @RequestMapping(value = "jsonRequest" ,method = RequestMethod.POST)
     public void jsonRequest(@RequestBody PmsCategory pmsCategory){
-
+        log.info("pmsCategory:{}",pmsCategory);
+        otherMethod(pmsCategory);
         System.out.println("------------");
+    }
+
+    private void otherMethod(PmsCategory pmsCategory) {
+        log.info("进入第二个方法");
+        pmsCategory.setName("进入第二个方法");
+        empController.empOther(pmsCategory);
+        log.info(pmsCategory.toString());
     }
 
     @RequestMapping(value = "batchInsert1" ,method = RequestMethod.POST)
@@ -274,5 +284,16 @@ private DeptController deptController;
         System.out.println(pmsCategories);
         log.info(pmsCategories.toString());
         //rocketmq太难了
+    }
+
+
+    @RequestMapping("/queryAndBackUp/{id}")
+    public void queryAndBackUp(@PathVariable int id){
+        QueryAndInsertDB<PmsCategory, PmsCategory, Object> db = new QueryAndInsertDB<>((p) -> pmsCategoryMapper.loadAll(p),
+                new PmsCategory(),
+                1000,
+                a -> pmsCategoryMapper.insert((PmsCategory) a),
+                o -> null);
+        db.startInsert();
     }
 }
