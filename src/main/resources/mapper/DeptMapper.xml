@@ -58,7 +58,7 @@
 
     <delete id="delete" >
         DELETE FROM dept
-        WHERE id = #{id}
+        WHERE dept_no = #{id}
     </delete>
 
     <update id="update" parameterType="com.blackmagicwoman.mybatistest.entity.Dept">
@@ -68,14 +68,14 @@
             <if test="null != dName and '' != dName">d_name = #{dName},</if>
             <if test="null != loc and '' != loc">loc = #{loc}</if>
         </set>
-        WHERE id = #{id}
+        WHERE dept_no = #{id}
     </update>
 
 
     <select id="load" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" />
         FROM dept
-        WHERE id = #{id}
+        WHERE dept_no = #{id}
     </select>
 
     <select id="pageList" resultMap="BaseResultMap">
@@ -96,4 +96,13 @@
     </select>
 
     <select id="selectById" resultType="com.blackmagicwoman.mybatistest.entity.Dept"></select>
+
+    <select id="loadAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM dept
+    </select>
+
+    <insert id="batchInsert">
+        insert into dept ()
+    </insert>
 </mapper>
