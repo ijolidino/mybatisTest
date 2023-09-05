@@ -1,6 +1,7 @@
 package com.blackmagicwoman.mybatistest.mapper;
 
 import com.blackmagicwoman.mybatistest.entity.PmsCategory;
+import com.blackmagicwoman.mybatistest.entity.PmsCategoryHistory;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -33,4 +34,8 @@ public interface PmsCategoryMapper {
     List<PmsCategory> query(PmsCategory pmsCategory);
 
     List<PmsCategory> queryListByCondFromMap(Map<String,Object> map);
+
+    List<PmsCategory> loadAll(PmsCategory pmsCategory);
+
+    void insertHis(PmsCategoryHistory pmsCategoryHistory);
 }
