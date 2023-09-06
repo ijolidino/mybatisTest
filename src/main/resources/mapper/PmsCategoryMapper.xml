@@ -37,9 +37,6 @@
     <insert id="insert" useGeneratedKeys="true" parameterType="com.blackmagicwoman.mybatistest.entity.PmsCategory">
         INSERT INTO pms_category
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="null != catId and '' != catId">
-                cat_id,
-            </if>
             <if test="null != name and '' != name">
                 name,
             </if>
@@ -66,9 +63,6 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="null != catId and '' != catId">
-                #{catId},
-            </if>
             <if test="null != name and '' != name">
                 #{name},
             </if>
@@ -94,6 +88,13 @@
                 #{productCount}
             </if>
         </trim>
+    </insert>
+
+    <insert id="insertHis" parameterType="com.blackmagicwoman.mybatistest.entity.PmsCategoryHistory">
+        INSERT INTO pms_category
+        (cat_id, name, parent_cid, cat_level, show_status, sort, icon, product_unit, product_count,current_date)
+        VALUES(#{catId},#{name},#{parentCid},#{catLevel},#{showStatus},#{sort},#{icon},#{productUnit},#{productCount},curdate());
+
     </insert>
 
     <insert id="batchInsert">
@@ -227,5 +228,11 @@
         </choose>
         order by count(distinct ccclof.loan_on_flow_srl_no) desc
         )t,(select @i:=0) as i order by onFlowFileNum desc
+    </select>
+
+    <select id="loadAll" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+            from pms_category
     </select>
 </mapper>
