@@ -1,16 +1,17 @@
 package com.blackmagicwoman.mybatistest;
 
 import org.junit.Test;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.*;
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -22,6 +23,12 @@ import java.util.stream.Stream;
  * @create: 2022-09-17 11:29
  **/
 public class StreamTest {
+
+    @Test
+    public void testHashMap(){
+        ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
+        map.put("a","a");
+    }
     @Test
     public void TestStream() {
         List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5, 5);
@@ -97,4 +104,38 @@ public class StreamTest {
         }
         file.deleteOnExit();
     }
+
+    @Test
+    public void testHanota(){
+        List<Integer> B = new ArrayList<>();
+        List<Integer> C = new ArrayList<>();
+        List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+                21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+                31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+                51, 52, 53, 54, 55, 56, 57, 58, 59, 50,
+                61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+                81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94);
+        List<Integer> A = new ArrayList<>(integers);
+        System.out.println("开始时间为："+ DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm:ss").format(LocalDateTime.now()));
+        hanota(A,B,C);
+        System.out.println(C);
+        System.out.println("结束时间为："+ DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm:ss").format(LocalDateTime.now()));
+    }
+
+    public void hanota(List<Integer> A, List<Integer> B, List<Integer> C) {
+        move(A,B,C,A.size());
+    }
+
+    //第一个参数是初始，第二个是目标，第三个参数是缓存。
+    public void move(List<Integer> A, List<Integer> C, List<Integer> B ,int n) {
+        if(n == 1) {
+            C.add(A.remove(A.size()-1));
+            return;
+        }
+        move(A, B, C, n - 1);             //上面n-1个，从A移动到B
+        C.add(A.remove(A.size() - 1));    //最底下的一个，从A移动到C
+        move(B, C, A, n - 1);             //上面n-1个，从B移动到C
+    }
+
+
 }
