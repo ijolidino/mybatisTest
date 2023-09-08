@@ -1,5 +1,6 @@
 package com.blackmagicwoman.mybatistest.common;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.regex.Pattern;
@@ -10,6 +11,7 @@ import java.util.regex.Pattern;
  * @author: Fuwen
  * @create: 2022-04-25 07:47
  **/
+@Slf4j
 public class RabbitMQConfig {
     /**
      * RabbitMQ的队列主题名称
@@ -29,6 +31,9 @@ public class RabbitMQConfig {
     public void testPatten(){
         int i=11;
         String quote = Pattern.quote("");
-        System.out.println(quote);
+        log.info(quote);
+        String s="aaa";
+        String s1="bbb";
+        System.out.format("aaa为：%s，bbb为：%s",s,s1);
     }
 }
