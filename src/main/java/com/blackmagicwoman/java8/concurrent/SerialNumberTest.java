@@ -8,6 +8,7 @@ package com.blackmagicwoman.java8.concurrent;
  **/
 public class SerialNumberTest {
     public static void main(String[] args) {
+        System.out.println(7^6^5);
         SerialNumberChecker.test(new SerialNumbers());
     }
 }
