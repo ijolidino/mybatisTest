@@ -51,6 +51,7 @@ public class IntTest implements Cloneable{
 
     @Override
     public IntTest clone() {
+
         try {
             IntTest clone = (IntTest) super.clone();
             if (intTest!=null){
