@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 /**
  * @program: mybatisTest
  * @description: 代理类
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-05-18 23:44
  **/
 
