@@ -22,4 +22,5 @@ logging:
   pattern:
     console: "%d - %msg%n"
   level:
-    com.blackmagicwoman.mybatistest.mapper : info
+    com.blackmagicwoman.mybatistest.mapper : debug
+   # root: debug
