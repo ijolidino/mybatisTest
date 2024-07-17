@@ -3,7 +3,7 @@ package com.blackmagicwoman.fileInputAndGenerate;
 /**
  * @program: mybatisTest
  * @description: 基础变量
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-07 20:10
  **/
 public class BaseConstants {
