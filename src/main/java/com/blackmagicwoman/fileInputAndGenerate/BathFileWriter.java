@@ -15,7 +15,7 @@ import java.util.function.Function;
 /**
  * @program: mybatisTest
  * @description: 基础变量
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-07 20:10
  * 读数据写文件处理类
  * 从数据库读取数据
