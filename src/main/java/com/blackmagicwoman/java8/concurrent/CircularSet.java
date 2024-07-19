@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * @program: mybatisTest
  * @description: 检测是否循环
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-08-08 22:09
  **/
 public class CircularSet {

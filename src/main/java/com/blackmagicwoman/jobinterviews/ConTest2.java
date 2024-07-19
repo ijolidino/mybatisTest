@@ -7,7 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * @program: mybatisTest
  * @description:
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-05-07 21:53
  **/
 public class ConTest2 {

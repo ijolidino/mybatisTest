@@ -8,7 +8,7 @@ import java.beans.PropertyVetoException;
 /**
  * @program: mybatisTest
  * @description: 数据源配置
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-15 20:47
  **/
 public class DataSourceConfiguration {

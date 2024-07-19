@@ -3,7 +3,7 @@ package com.blackmagicwoman.geekTime.interview.deadlock;
 /**
  * @program: mybatisTest
  * @description: 死锁
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-05-30 19:41
  **/
 public class DeadLockSample extends Thread {

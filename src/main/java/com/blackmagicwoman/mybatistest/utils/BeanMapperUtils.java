@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * @program: mybatisTest
  * @description: Bean复制/拷贝工具类
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-24 10:06
  **/
 public class BeanMapperUtils {

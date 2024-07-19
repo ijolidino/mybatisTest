@@ -13,7 +13,7 @@
         <result column="dept_no" property="deptNo" />
         <result column="d_name" property="dName" />
         <result column="loc" property="loc" />
-        <collection property="empList" ofType="emp">
+        <collection property="empList" ofType="com.blackmagicwoman.mybatistest.entity.Emp">
             <result property="comm" column="comm"/>
             <result property="empNo" column="emp_no"/>
             <result property="eName" column="e_name"/>
@@ -68,7 +68,7 @@
             <if test="null != dName and '' != dName">d_name = #{dName},</if>
             <if test="null != loc and '' != loc">loc = #{loc}</if>
         </set>
-        WHERE dept_no = #{id}
+        WHERE dept_no = #{deptNo}
     </update>
 
 
