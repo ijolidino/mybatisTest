@@ -1,14 +1,17 @@
 package com.blackmagicwoman.mybatistest.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * @program: mybatisTest
  * @description: 部门
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-08-06 21:52
  **/
+@Data
 public class Dept implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,38 +32,4 @@ public class Dept implements Serializable {
     private String loc;
 
     private List<Emp> empList;
-    public Dept() {
-    }
-
-    public Integer getDeptNo() {
-        return deptNo;
-    }
-
-    public void setDeptNo(Integer deptNo) {
-        this.deptNo = deptNo;
-    }
-
-    public String getDName() {
-        return dName;
-    }
-
-    public void setDName(String dName) {
-        this.dName = dName;
-    }
-
-    public String getLoc() {
-        return loc;
-    }
-
-    public void setLoc(String loc) {
-        this.loc = loc;
-    }
-
-    public List<Emp> getEmpList() {
-        return empList;
-    }
-
-    public void setEmpList(List<Emp> empList) {
-        this.empList = empList;
-    }
 }
