@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
  * 员工表
  * </p>
  *
- * @author Fuwen
+ * @author heise
  * @since 2022-04-15
  */
 @ApiModel(value = "Emp对象", description = "员工表")

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @program: mybatisTest
  * @description: RabbitMQ
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-25 07:44
  **/
 @Configuration

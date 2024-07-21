@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 /**
  * @program: mybatisTest
  * @description: 动态规划转移方程
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-09-23 23:31
  **/
 public class DpTest {

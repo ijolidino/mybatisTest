@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * @program: mybatisTest
  * @description: 部门
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-08-06 21:53
  **/
 public interface DeptService {

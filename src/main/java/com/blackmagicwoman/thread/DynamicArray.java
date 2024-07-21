@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * @program: mybatisTest
  * @description:
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-06-08 21:48
  **/
 public class DynamicArray<E> {
