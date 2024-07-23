@@ -9,7 +9,7 @@ import java.io.File;
 /**
  * @program: mybatisTest
  * @description: 生成文件的测试
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-07 20:18
  **/
 public class FileGeneratorTest {

@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 /**
  * @program: mybatisTest
  * @description: 测试工厂
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-11-13 09:55
  **/
 public class FactoryTest {
