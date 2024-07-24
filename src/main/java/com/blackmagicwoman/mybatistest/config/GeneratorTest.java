@@ -9,14 +9,14 @@ import java.util.Collections;
 /**
  * @program: renren-generator
  * @description: 代码生成器
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-15 23:10
  **/
 public class GeneratorTest {
 //    public static void main(String[] args) {
 //        FastAutoGenerator.create("jdbc:mysql://127.0.0.1:3306/blackmagicmall_oms", "root", "952714")
 //                .globalConfig(builder -> {
-//                    builder.author("Fuwen") // 设置作者
+//                    builder.author("heise") // 设置作者
 //                            .enableSwagger() // 开启 swagger 模式
 //                            .fileOverride() // 覆盖已生成文件
 //                            .outputDir("D://"); // 指定输出目录

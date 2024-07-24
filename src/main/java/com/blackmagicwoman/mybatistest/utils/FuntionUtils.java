@@ -13,7 +13,7 @@ import java.util.function.Function;
 /**
  * @program: mybatisTest
  * @description: function相关操作集合
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-24 10:16
  **/
 @Slf4j

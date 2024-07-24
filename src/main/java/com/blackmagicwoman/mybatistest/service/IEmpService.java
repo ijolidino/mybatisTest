@@ -8,7 +8,7 @@ import com.blackmagicwoman.mybatistest.entity.Emp;
  * 员工表 服务类
  * </p>
  *
- * @author Fuwen
+ * @author heise
  * @since 2022-04-15
  */
 public interface IEmpService  {

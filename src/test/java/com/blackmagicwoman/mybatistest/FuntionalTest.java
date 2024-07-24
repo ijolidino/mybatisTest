@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 /**
  * @program: mybatisTest
  * @description: 参数化函数的测试
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-14 21:48
  **/
 public class FuntionalTest {

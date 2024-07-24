@@ -5,7 +5,7 @@ import com.blackmagicwoman.fileInputAndGenerate.IBean2LineStrHandler;
 /**
  * @program: mybatisTest
  * @description: 处理String字符串的service
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-14 21:50
  **/
 public class HandlerStringService {

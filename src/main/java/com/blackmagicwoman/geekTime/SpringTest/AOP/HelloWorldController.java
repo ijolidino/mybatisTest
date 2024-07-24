@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @program: mybatisTest
  * @description: 发送接口
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-05-18 23:46
  **/
 
