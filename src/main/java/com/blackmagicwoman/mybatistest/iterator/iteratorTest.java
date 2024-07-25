@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * @program: mybatisTest
  * @description: 自己实现迭代器
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-25 12:59
  **/
 public class iteratorTest {

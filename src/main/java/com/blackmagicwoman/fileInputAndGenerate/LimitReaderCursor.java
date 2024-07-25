@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 /**
  * @program: mybatisTest
  * @description: 限量读取数据
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-07 20:10
  * */
 @Data

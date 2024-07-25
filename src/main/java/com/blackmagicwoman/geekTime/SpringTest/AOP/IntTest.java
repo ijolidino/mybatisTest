@@ -3,7 +3,7 @@ package com.blackmagicwoman.geekTime.SpringTest.AOP;
 /**
  * @program: mybatisTest
  * @description: 测试克隆复制
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-08-13 15:16
  **/
 public class IntTest implements Cloneable{
