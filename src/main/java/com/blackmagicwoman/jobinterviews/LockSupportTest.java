@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * @program: mybatisTest
  * @description: 交替唤醒线程
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-05-07 20:35
  **/
 @Slf4j
@@ -89,4 +89,33 @@ public class LockSupportTest {
         }).start();
     }
 
+    /**
+     * 先unPark后park，则线程会跳过park步骤，直接执行后续的代码；
+     * 如果先unPark后两次park，线程会阻塞；
+     * @throws InterruptedException
+     */
+    @Test
+    public void testPartAndUnPart() throws InterruptedException {
+        MyThread myThread = new MyThread();
+        myThread.start();
+        Thread.currentThread().sleep(100);
+        LockSupport.unpark(myThread);
+        Thread.currentThread().sleep(1100);
+    }
+
+    class MyThread extends Thread{
+        @Override
+        public void run() {
+            System.out.println("线程"+Thread.currentThread().getName()+"开始进入方法");
+            try {
+                Thread.currentThread().sleep(200);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            LockSupport.park();
+            System.out.println("线程"+Thread.currentThread().getName()+"开始执行");
+            LockSupport.unpark(Thread.currentThread());
+            System.out.println("线程"+Thread.currentThread().getName()+"unPark完成");
+        }
+    }
 }
