@@ -33,7 +33,7 @@
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
-            <version>0.9.5.2</version>
+            <version>0.9.5.5</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -89,11 +89,13 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
+        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.4.2</version>
+            <artifactId>pagehelper</artifactId>
+            <version>6.1.0</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
 <!--        <dependency>-->
@@ -102,11 +104,13 @@
 <!--            <version>3.5.2</version>-->
 <!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
-<!--        <dependency>-->
-<!--            <groupId>com.baomidou</groupId>-->
-<!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
-<!--            <version>3.5.1</version>-->
-<!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>3.5.5</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -135,10 +139,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.7.9</version>
+            <version>5.8.26</version>
+        </dependency>
+        <dependency>
+            <groupId>com.deepoove</groupId>
+            <artifactId>poi-tl</artifactId>
+            <version>1.12.2</version>
         </dependency>
     </dependencies>
 
