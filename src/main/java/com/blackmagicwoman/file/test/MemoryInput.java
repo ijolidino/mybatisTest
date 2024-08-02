@@ -7,7 +7,7 @@ import java.io.StringReader;
 /**
  * @program: mybatisTest
  * @description: 从内存中输入人
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-08-11 21:46
  **/
 public class MemoryInput {
