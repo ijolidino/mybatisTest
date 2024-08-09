@@ -1,6 +1,7 @@
 package com.blackmagicwoman.mybatistest.mapper;
 
 import com.blackmagicwoman.mybatistest.entity.PmsCategory;
+import com.blackmagicwoman.mybatistest.entity.PmsCategory2;
 import com.blackmagicwoman.mybatistest.entity.PmsCategoryHistory;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,7 +16,7 @@ import java.util.Map;
  * 商品三级分类 Mapper 接口
  * </p>
  *
- * @author Fuwen
+ * @author heise
  * @since 2022-05-03
  */
 @Mapper
@@ -29,6 +30,7 @@ public interface PmsCategoryMapper {
 
     void batchInsert(@Param("list") List<PmsCategory> pmsCategories);
 
+    void pmscategory2(@Param("list") List<PmsCategory2> pmsCategories);
     void insert(PmsCategory pmsCategory);
 
     List<PmsCategory> query(PmsCategory pmsCategory);

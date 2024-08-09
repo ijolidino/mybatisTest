@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * @program: mybatisTest
  * @description: 哲学家问题
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-05-07 10:43
  **/
 @Slf4j

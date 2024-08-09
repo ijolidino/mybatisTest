@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
  * 商品三级分类
  * </p>
  *
- * @author Fuwen
+ * @author heise
  * @since 2022-05-03
  */
 //@TableName("pms_category")

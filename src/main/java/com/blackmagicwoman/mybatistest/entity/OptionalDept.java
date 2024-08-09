@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @program: mybatisTest
  * @description: 部门
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-08-06 21:52
  **/
 public class OptionalDept implements Serializable {
