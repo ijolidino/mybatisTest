@@ -114,6 +114,23 @@
         </foreach>
     </insert>
 
+    <insert id="pmscategory2" parameterType="java.util.List">
+        insert into pms_category2
+        (cat_id,
+        name,
+        parent_cid,
+        cat_level,
+        show_status,
+        sort,
+        icon,
+        product_unit,
+        product_count)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.catId},#{item.name},#{item.parentCid},#{item.catLevel},#{item.showStatus},#{item.sort},#{item.icon},#{item.productUnit},#{item.productCount})
+        </foreach>
+    </insert>
+
     <delete id="delete">
         DELETE
         FROM pms_category
@@ -156,9 +173,20 @@
         FROM pms_category
     </select>
 
-    <select id="query" resultMap="BaseResultMap">
+    <select id="query" resultMap="BaseResultMap" parameterType="com.blackmagicwoman.mybatistest.entity.PmsCategory">
         select *
-        from pms_category
+        from pms_category where
+        <trim suffixOverrides="and">
+            <if test="null != catId and '' != catId">cat_id = #{catId} and </if>
+            <if test="null != name and '' != name">name = #{name} and</if>
+            <if test="null != parentCid and '' != parentCid">parent_cid = #{parentCid} and</if>
+            <if test="null != catLevel and '' != catLevel">cat_level = #{catLevel} and</if>
+            <if test="null != showStatus and '' != showStatus">show_status = #{showStatus} and</if>
+            <if test="null != sort and '' != sort">sort = #{sort} and</if>
+            <if test="null != icon and '' != icon">icon = #{icon} and</if>
+            <if test="null != productUnit and '' != productUnit">product_unit = #{productUnit} and</if>
+            <if test="null != productCount and '' != productCount">product_count = #{productCount}</if>
+        </trim>
     </select>
 
     <select id="queryListByCondFromMap" resultMap="BaseResultMap">
