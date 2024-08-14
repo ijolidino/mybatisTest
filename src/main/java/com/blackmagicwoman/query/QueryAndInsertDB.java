@@ -13,7 +13,7 @@ import java.util.function.Function;
 /**
  * @program: mybatisTest
  * @description: 查询和插入；一张表在数据量太大几十万的情况下使用流进行备份
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-10-31 20:05
  **/
 @Data

@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * @program: mybatisTest
  * @description: SQLSession配置类
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-15 20:51
  **/
 public class SessionFactoryConfiguration {

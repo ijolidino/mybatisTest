@@ -3,7 +3,7 @@ package com.blackmagicwoman.mybatistest.service;
 /**
  * @program: mybatisTest
  * @description: 消息发送接口
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-26 07:15
  **/
 public interface RabbitMQService {

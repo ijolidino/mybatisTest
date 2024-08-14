@@ -3,7 +3,7 @@ package com.blackmagicwoman.onjava8.design.dynamicFactory;
 /**
  * @program: mybatisTest
  * @description: 形状
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-11-13 09:58
  **/
 public class Shape {

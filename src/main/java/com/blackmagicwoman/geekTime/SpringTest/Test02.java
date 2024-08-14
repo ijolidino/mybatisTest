@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * @program: mybatisTest
  * @description:
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-07-24 19:14
  **/
 public class Test02 {

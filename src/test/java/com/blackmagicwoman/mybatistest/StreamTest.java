@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 /**
  * @program: mybatisTest
  * @description: java8的流测试
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-17 11:29
  **/
 public class StreamTest {

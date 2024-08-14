@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @program: mybatisTest
  * @description: 序列号检测器
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-08-08 22:07
  **/
 public class SerialNumberChecker implements Runnable{

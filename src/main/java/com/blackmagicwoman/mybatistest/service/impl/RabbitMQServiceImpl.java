@@ -15,7 +15,7 @@ import java.util.UUID;
 /**
  * @program: mybatisTest
  * @description: 消息实现类
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-26 07:14
  **/
 @Service

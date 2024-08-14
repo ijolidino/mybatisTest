@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 /**
  * @program: 创建一个公共的配置类，定义一些配置信息RabbitMQ的队列主题名称
  * @description: 配置类
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-25 07:47
  **/
 @Slf4j

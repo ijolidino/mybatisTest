@@ -3,7 +3,7 @@ package com.blackmagicwoman.sort;
 /**
  * @program: mybatisTest
  * @description: 希尔排序
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-08 22:36
  **/
 public class ShellSort {

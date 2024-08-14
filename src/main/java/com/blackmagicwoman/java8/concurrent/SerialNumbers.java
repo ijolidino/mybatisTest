@@ -3,7 +3,7 @@ package com.blackmagicwoman.java8.concurrent;
 /**
  * @program: mybatisTest
  * @description: 序列号生成器
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-08-08 22:08
  **/
 public class SerialNumbers {

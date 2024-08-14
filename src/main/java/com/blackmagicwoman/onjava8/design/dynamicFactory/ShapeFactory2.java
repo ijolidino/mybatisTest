@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * @program: mybatisTest
  * @description:
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-11-13 10:01
  **/
 public class ShapeFactory2 implements FactoryMethod {

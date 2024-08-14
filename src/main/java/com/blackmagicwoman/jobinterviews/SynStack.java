@@ -3,7 +3,7 @@ package com.blackmagicwoman.jobinterviews;
 /**
  * @program: mybatisTest
  * @description: 同步线程代码
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-05-08 21:09
  **/
 class SynStack

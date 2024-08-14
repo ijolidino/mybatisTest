@@ -7,19 +7,22 @@ import com.blackmagicwoman.fileInputAndGenerate.BathFileWriter;
 import com.blackmagicwoman.mybatistest.entity.Emp;
 import com.blackmagicwoman.mybatistest.entity.EmpEntity;
 import com.blackmagicwoman.mybatistest.entity.PmsCategory;
+import com.blackmagicwoman.mybatistest.entity.PmsCategory2;
 import com.blackmagicwoman.mybatistest.mapper.PmsCategoryAmtTestMapper;
 import com.blackmagicwoman.mybatistest.mapper.PmsCategoryMapper;
 import com.blackmagicwoman.mybatistest.service.TestService;
 import com.blackmagicwoman.query.QueryAndInsertDB;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.cursor.Cursor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.io.*;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @program: mybatisTest
  * @description: 控制层
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-15 21:01
  **/
 
@@ -40,20 +43,21 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/demoproject/test")
 @Slf4j
 public class TestController {
-@Autowired
-private DeptController deptController;
-    @Autowired
-    private TestService testService ;
-    @Autowired
+    @Resource
+    private DeptController deptController;
+    @Resource
+    private TestService testService;
+    @Resource
     private ThreadBatchInsert batchInsert1;
-    @Autowired
+    @Resource
     private PmsCategoryMapper pmsCategoryMapper;
     @Resource
     private EmpController empController;
     @Resource
     private PmsCategoryAmtTestMapper pmsCategoryAmtTestMapper;
-    @RequestMapping(value = "/get/{empNo}",method = RequestMethod.GET)
-    public EmpEntity test(@PathVariable Integer empNo){
+
+    @GetMapping(value = "/get/{empNo}")
+    public EmpEntity test(@PathVariable Integer empNo) {
         deptController.selectdeptWithEmp(1);
         System.out.println("empNo:" + empNo);
         System.out.println(testService.isCanInsert());

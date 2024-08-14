@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * @program: mybatisTest
  * @description: 消费者
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-26 07:22
  **/
 @Component

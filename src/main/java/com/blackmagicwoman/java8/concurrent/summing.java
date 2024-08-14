@@ -7,7 +7,7 @@ import java.util.stream.LongStream;
 /**
  * @program: mybatisTest
  * @description: 并行流式计算
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-09-04 17:47
  **/
 public class summing {

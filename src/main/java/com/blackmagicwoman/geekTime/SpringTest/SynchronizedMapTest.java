@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @program: mybatisTest
  * @description: 线程安全的map,多线程操作原来的map是否会锁住
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-08-17 23:21
  **/
 public class SynchronizedMapTest {

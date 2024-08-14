@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 /**
  * @program: mybatisTest
  * @description: 消息发送控制层
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-26 07:18
  **/
 @RestController
