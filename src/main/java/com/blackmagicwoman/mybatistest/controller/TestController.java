@@ -64,30 +64,30 @@ public class TestController {
         return testService.getById(empNo);
     }
 
-    @RequestMapping(value = "batchInsert",method = RequestMethod.POST)
-    public int batchInsert(@PathVariable List<Emp> emps){
+    @PostMapping(value = "batchInsert")
+    public int batchInsert(@PathVariable List<Emp> emps) {
 
         return 1;
     }
 
-    @RequestMapping(value = "/getEmp/{empNo}",method = RequestMethod.POST)
-    public EmpEntity getBody(@PathVariable Integer empNo){
+    @PostMapping(value = "/getEmp/{empNo}")
+    public EmpEntity getBody(@PathVariable Integer empNo) {
         return testService.getById(empNo);
     }
+
     //@Transactional
-    @RequestMapping(value = "getCursor/{limit}" ,method = RequestMethod.POST)
-    public void getCursor(@PathVariable Integer limit){
+    @PostMapping(value = "getCursor/{limit}")
+    public void getCursor(@PathVariable Integer limit) {
         Cursor<PmsCategory> cursor = pmsCategoryMapper.getCursor(limit);
-        cursor.forEach(pmsCategory -> {
-            System.out.println(pmsCategory.getCatId());
-        });
+        cursor.forEach(pmsCategory -> System.out.println(pmsCategory.getCatId()));
         System.out.println("----------");
 //添加新分支
         //添加新分支2
     }
-    @RequestMapping(value = "getPage/{pageNum}/{pageSize}" ,method = RequestMethod.POST)
-    public PageInfo<PmsCategory> getPage(@PathVariable Integer pageNum,@PathVariable Integer pageSize){
-        PageHelper.startPage(pageNum,pageSize);
+
+    @PostMapping(value = "getPage/{pageNum}/{pageSize}")
+    public PageInfo<PmsCategory> getPage(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         List<PmsCategory> pmsCategories = pmsCategoryMapper.queryByPage(pageNum, pageSize);
         PageInfo<PmsCategory> pmsCategoryPageInfo = new PageInfo<>(pmsCategories);
         System.out.println("------------");
