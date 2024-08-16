@@ -94,9 +94,26 @@ public class TestController {
         return pmsCategoryPageInfo;
     }
 
-    @RequestMapping(value = "jsonRequest" ,method = RequestMethod.POST)
-    public void jsonRequest(@RequestBody PmsCategory pmsCategory){
-        log.info("pmsCategory:{}",pmsCategory);
+    /***
+     * 分页查询使用xml里的SQL
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @PostMapping(value = "getPage1/{pageNum}/{pageSize}")
+    public PageInfo<PmsCategory> getPage1(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+        PageHelper.startPage(1, 2);
+        PmsCategory pmsCategory = new PmsCategory();
+        pmsCategory.setName("图书、音像、电子书刊");
+        List<PmsCategory> pmsCategories = pmsCategoryMapper.query(pmsCategory);
+        PageInfo<PmsCategory> pmsCategoryPageInfo = new PageInfo<>(pmsCategories);
+        System.out.println("------------");
+        return pmsCategoryPageInfo;
+    }
+
+    @PostMapping(value = "jsonRequest")
+    public void jsonRequest(@RequestBody PmsCategory pmsCategory) {
+        log.info("pmsCategory:{}", pmsCategory);
         otherMethod(pmsCategory);
         System.out.println("------------");
     }
