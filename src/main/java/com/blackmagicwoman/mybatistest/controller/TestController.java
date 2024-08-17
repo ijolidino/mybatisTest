@@ -125,26 +125,26 @@ public class TestController {
         log.info(pmsCategory.toString());
     }
 
-    @RequestMapping(value = "batchInsert1" ,method = RequestMethod.POST)
-    public void threadTest(){
-        int count=0;
+    @PostMapping(value = "batchInsert1")
+    public void threadTest() {
+        int count = 0;
         List<List<PmsCategory>> ps = new ArrayList<>();
-        List<PmsCategory> pmsCategories=new ArrayList<>();
-        for (int i=1500;i<1600;i++){
+        List<PmsCategory> pmsCategories = new ArrayList<>();
+        for (int i = 1500; i < 1600; i++) {
             count++;
-            if (count%10==0){
+            if (count % 10 == 0) {
                 ps.add(pmsCategories);
-                pmsCategories= new ArrayList<>();
+                pmsCategories = new ArrayList<>();
             }
             PmsCategory p = new PmsCategory();
-            p.setName("tomato"+i);
+            p.setName("tomato" + i);
             pmsCategories.add(p);
 
         }
 
         ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 4, 100, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<>(200), new ThreadTest.NameTreadFactory(), new ThreadTest.MyIgnorePolicy());
-        for (List<PmsCategory> pms :ps) {
+        for (List<PmsCategory> pms : ps) {
 //            for (PmsCategory pmsCategory:pmsCategories){
 //                pmsCategoryMapper.insert(pmsCategory);
 //            }
@@ -154,8 +154,71 @@ public class TestController {
         System.out.println("------------");
     }
 
-    @RequestMapping(value = "/batch/writeAllPmsCategory",method = RequestMethod.GET)
-    public void TestGenerator(){
+
+    @PostMapping(value = "batchInsertWithOneThread")
+    public void batchInsertWithOneThread() {
+        int curPage = 1;
+        Page<Object> page = PageHelper.startPage(curPage, 500, true).doSelectPage(() -> pmsCategoryMapper.query(new PmsCategory()));
+        List<Object> result = page.getResult();
+        List<PmsCategory> pmsCategories = new ArrayList<>();
+        for (Object o : result) {
+            pmsCategories.add((PmsCategory) o);
+        }
+        insertTable(pmsCategories, result);
+        int pages = page.getPages();
+        while (pages >= curPage) {
+            curPage++;
+            page = PageHelper.startPage(curPage, 500, true).doSelectPage(() -> pmsCategoryMapper.query(new PmsCategory()));
+            for (Object o : result) {
+                pmsCategories.add((PmsCategory) o);
+            }
+            insertTable(pmsCategories, result);
+        }
+        System.out.println("------------");
+    }
+
+    /**
+     * 批量初始化数据掉表，最大设置1000000万量，查看火焰图
+     */
+    @PostMapping(value = "innit")
+    public void innit() {
+        List<PmsCategory2> pmsCategories = new ArrayList<>();
+        int i = 0;
+        while (i < 10000000) {
+            i++;
+            PmsCategory2 pmsCategory = new PmsCategory2();
+            pmsCategory.setCatId(i + "");
+            pmsCategory.setName("小陈" + i);
+            pmsCategory.setParentCid(i + "");
+            pmsCategory.setCatLevel(i + "");
+            pmsCategory.setShowStatus(i + "");
+            pmsCategory.setSort(i + "");
+            pmsCategory.setIcon("" + i);
+            pmsCategory.setProductUnit("" + i);
+            pmsCategory.setProductCount(i + "");
+            pmsCategories.add(pmsCategory);
+            if (pmsCategories.size() == 1000) {
+                log.info("初始化第【{}】条", i);
+                insertTablePmsCategory2(pmsCategories, new ArrayList<>());
+            }
+        }
+        log.info("初始化1000000数据量完成！！！");
+    }
+
+    private void insertTable(List<PmsCategory> pmsCategories, List<Object> result) {
+        pmsCategoryMapper.batchInsert(pmsCategories);
+        pmsCategories.clear();
+        result.clear();
+    }
+
+    private void insertTablePmsCategory2(List<PmsCategory2> pmsCategories, List<Object> result) {
+        pmsCategoryMapper.pmscategory2(pmsCategories);
+        pmsCategories.clear();
+        result.clear();
+    }
+
+    @GetMapping(value = "/batch/writeAllPmsCategory")
+    public void TestGenerator() {
         PmsCategory pmsCategory = new PmsCategory();
 
         BathFileWriter bathFileWriter = new BathFileWriter<>("/pmsCategory.DAT",
