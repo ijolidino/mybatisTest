@@ -227,48 +227,48 @@ public class TestController {
                 1000,
                 PmsCategory::toString,
                 BaseConstants.DEFAULT_CHARACTER_SET
-                );
+        );
         createFile();
         bathFileWriter.startQueryAndWrite();
     }
 
-    @RequestMapping(value ="/batch/writeAllTempFile",method = RequestMethod.GET)
+    @GetMapping(value = "/batch/writeAllTempFile")
     public void GeneratorTempFile() throws IOException {
         File file = new File("D:\\javaTest\\bigFile");
-        if (!file.exists()){
+        if (!file.exists()) {
             file.mkdirs();
         }
         File bigFile = new File("D:\\javaTest\\bigFile\\pmsCategory.DAT");
-        if (bigFile.exists()){
+        if (bigFile.exists()) {
             bigFile.deleteOnExit();
         }
         boolean newFile = bigFile.createNewFile();
-        try (FileOutputStream fileOutputStream=new FileOutputStream(bigFile);
-             OutputStreamWriter outputStreamWriter= new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
-             BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter)){
-                for (long i=0;i<20000000;i++){
-                    String s="";
-                    for (int j=0;j<21;j++){
-                        s+=i+"↑";
-                    }
-                    bufferedWriter.write(s);
-                    bufferedWriter.newLine();
-                    bufferedWriter.flush();
+        try (FileOutputStream fileOutputStream = new FileOutputStream(bigFile);
+             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
+             BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter)) {
+            for (long i = 0; i < 20000000; i++) {
+                String s = "";
+                for (int j = 0; j < 21; j++) {
+                    s += i + "↑";
                 }
+                bufferedWriter.write(s);
+                bufferedWriter.newLine();
+                bufferedWriter.flush();
+            }
         }
     }
 
-    @RequestMapping(value ="/batch/analysisBigFile",method = RequestMethod.GET)
+    @GetMapping(value = "/batch/analysisBigFile")
     public void AnalysisBigFile() throws IOException {
         File fileSource = new File("D:\\javaTest\\bigFile\\pmsCategory.DAT");
         File file = new File("D:\\javaTest\\bigFile\\splitPath");
-        if (!file.exists()){
+        if (!file.exists()) {
             file.mkdirs();
         }
-        List<File> files= new ArrayList<>();
-        for (long i=0;i<20;i++){
-            File bigFile = new File("D:\\javaTest\\bigFile\\splitPath\\pmsCategory"+i+".DAT");
-            if(bigFile.exists()){
+        List<File> files = new ArrayList<>();
+        for (long i = 0; i < 20; i++) {
+            File bigFile = new File("D:\\javaTest\\bigFile\\splitPath\\pmsCategory" + i + ".DAT");
+            if (bigFile.exists()) {
                 bigFile.deleteOnExit();
             }
             boolean newFile = bigFile.createNewFile();
