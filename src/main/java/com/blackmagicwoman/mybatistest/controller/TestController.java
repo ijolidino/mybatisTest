@@ -274,13 +274,28 @@ public class TestController {
             boolean newFile = bigFile.createNewFile();
             files.add(bigFile);
         }
-        try (FileInputStream fileInputStream=new FileInputStream(fileSource);
-             InputStreamReader inputStreamReader= new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
-             BufferedReader bufferedReader = new BufferedReader(inputStreamReader)){
+        /*从网络中读取数据*/
+        URL url = new URL("http://www.pindd.com");
+        /* 字节流 */
+        InputStream is = url.openStream();
+        /* 字符流 */
+        InputStreamReader isr = new InputStreamReader(is, "utf-8");
+        /* 提供缓存功能 */
+        BufferedReader br = new BufferedReader(isr);
+        String line;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+
+        br.close();
+        try (FileInputStream fileInputStream = new FileInputStream(fileSource);
+             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
+             BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
             for (File file1 : files) {
-                try (FileOutputStream fileOutputStream =new FileOutputStream(file1,true);
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream,StandardCharsets.UTF_8);
-                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter)){
+                try (FileOutputStream fileOutputStream = new FileOutputStream(file1, true);
+                     BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+                     OutputStreamWriter outputStreamWriter = new OutputStreamWriter(bufferedOutputStream, StandardCharsets.UTF_8);
+                     BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter)) {
                     for (long i = 1; i <= 1000000; i++) {
                         String readLine = bufferedReader.readLine();
                         bufferedWriter.write(readLine);
