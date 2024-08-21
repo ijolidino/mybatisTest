@@ -300,14 +300,21 @@ public class TestController {
                         String readLine = bufferedReader.readLine();
                         bufferedWriter.write(readLine);
                         bufferedWriter.newLine();
-                        if (i%10000==0){
+                        if (i % 10000 == 0) {
                             bufferedWriter.flush();
                         }
-                        if (i%100000==0){
-                            log.info("文件{}刷了{}条",file1.getName(),i);
+                        if (i % 100000 == 0) {
+                            log.info("文件{}刷了{}条", file1.getName(), i);
                         }
                     }
                 }
+            }
+        }
+        /*这种方式容易编码格式混乱*/
+        try (FileReader fileReader=new FileReader("D:\\javaTest\\bigFile\\pmsCategory.DAT");
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            for (File file1 : files) {
+
             }
         }
     }
