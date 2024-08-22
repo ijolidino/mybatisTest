@@ -319,25 +319,25 @@ public class TestController {
         }
     }
 
-    @RequestMapping(value ="/batch/analysisBigFileToDataBase",method = RequestMethod.GET)
+    @GetMapping(value = "/batch/analysisBigFileToDataBase")
     public void AnalysisBigFileToDataBase() throws IOException {
         File fileSource = new File("D:\\javaTest\\bigFile\\pmsCategory.DAT");
         File file = new File("D:\\javaTest\\bigFile\\splitPath");
-        if (!file.exists()){
+        if (!file.exists()) {
             file.mkdirs();
         }
-        List<File> files= new ArrayList<>();
-        for (long i=0;i<20;i++){
-            File bigFile = new File("D:\\javaTest\\bigFile\\splitPath\\pmsCategory"+i+".DAT");
+        List<File> files = new ArrayList<>();
+        for (long i = 0; i < 20; i++) {
+            File bigFile = new File("D:\\javaTest\\bigFile\\splitPath\\pmsCategory" + i + ".DAT");
             files.add(bigFile);
         }
         for (File file1 : files) {
-            try (FileInputStream fileInputStream =new FileInputStream(file1);
-                 InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream,StandardCharsets.UTF_8);
-                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader)){
+            try (FileInputStream fileInputStream = new FileInputStream(file1);
+                 InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
+                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
                 String readLine;
                 List<PmsCategoryAmtTest> pmsCategoryAmtTests = new ArrayList<>();
-                while (StringUtils.isNotEmpty(readLine=bufferedReader.readLine())){
+                while (StringUtils.isNotEmpty(readLine = bufferedReader.readLine())) {
                     String[] split = readLine.split("↑");
                     PmsCategoryAmtTest pmsCategoryAmtTest = new PmsCategoryAmtTest();
                     pmsCategoryAmtTest.setCatId(split[0]);
@@ -362,7 +362,7 @@ public class TestController {
                     pmsCategoryAmtTest.setAmt18(split[19]);
                     pmsCategoryAmtTest.setAmt19(split[20]);
                     pmsCategoryAmtTests.add(pmsCategoryAmtTest);
-                    if (pmsCategoryAmtTests.size()>1000){
+                    if (pmsCategoryAmtTests.size() > 1000) {
                         pmsCategoryAmtTestMapper.batchInsert(pmsCategoryAmtTests);
                         pmsCategoryAmtTests.clear();
                     }
@@ -373,19 +373,19 @@ public class TestController {
 
     private void createFile() {
         File file = new File("/pmsCategory");
-        if (FileUtil.exist(file)){
+        if (FileUtil.exist(file)) {
             FileUtil.del(file);
         }
         FileUtil.touch(file);
     }
 
-    @RequestMapping(value = "/query/queryByMap",method = RequestMethod.GET)
-    public void queryByMap(){
+    @GetMapping(value = "/query/queryByMap")
+    public void queryByMap() {
         log.info("开始日志");
         HashMap<String, Object> map = new HashMap<>();
         List<String> strings = Arrays.asList("手机", "家用电器");
-        String [] strings1={"手机", "家用电器"};
-        map.put("names",strings1);
+        String[] strings1 = {"手机", "家用电器"};
+        map.put("names", strings1);
         List<PmsCategory> pmsCategories = pmsCategoryMapper.queryListByCondFromMap(map);
         System.out.println(pmsCategories);
         log.info(pmsCategories.toString());
@@ -393,8 +393,8 @@ public class TestController {
     }
 
 
-    @RequestMapping("/queryAndBackUp/{id}")
-    public void queryAndBackUp(@PathVariable int id){
+    @PostMapping("/queryAndBackUp/{id}")
+    public void queryAndBackUp(@PathVariable int id) {
         QueryAndInsertDB<PmsCategory, PmsCategory, Object> db = new QueryAndInsertDB<>((p) -> pmsCategoryMapper.loadAll(p),
                 new PmsCategory(),
                 1000,
