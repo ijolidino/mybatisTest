@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @program: mybatisTest
  * @description: 批量插入
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-06-02 22:22
  **/
 @Service

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.blackmagicwoman.mybatistest.dao.TestDao">
+<mapper namespace="com.blackmagicwoman.mybatistest.mapper.TestDao">
 
     <resultMap id="baseResultMap" type="com.blackmagicwoman.mybatistest.entity.EmpEntity">
         <result property="comm" column="comm"></result>

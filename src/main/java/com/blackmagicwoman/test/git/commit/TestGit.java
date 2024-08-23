@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * @program: mybatisTest
  * @description: 测试git练习的提交
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-06-23 11:44
  **/
 @Slf4j

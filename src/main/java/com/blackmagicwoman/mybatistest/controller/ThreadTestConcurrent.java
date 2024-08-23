@@ -1,5 +1,7 @@
 package com.blackmagicwoman.mybatistest.controller;
 
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -8,7 +10,7 @@ import java.util.concurrent.atomic.AtomicStampedReference;
 /**
  * @program: mybatisTest
  * @description: 并发问题，作为判断线程运行的先后顺序
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-11-19 22:48
  **/
 public class ThreadTestConcurrent {

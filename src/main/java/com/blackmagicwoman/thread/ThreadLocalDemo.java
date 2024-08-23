@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 /**
  * {@code @program:} mybatisTest
  * {@code @description:} 多线程map样例
- * {@code @author:} Fuwen
+ * {@code @author:} heise
  * {@code @create:} 2023-03-09 22:02
  **/
 @Slf4j

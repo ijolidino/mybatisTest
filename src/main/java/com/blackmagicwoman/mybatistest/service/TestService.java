@@ -1,6 +1,6 @@
 package com.blackmagicwoman.mybatistest.service;
 
-import com.blackmagicwoman.mybatistest.dao.TestDao;
+import com.blackmagicwoman.mybatistest.mapper.TestDao;
 import com.blackmagicwoman.mybatistest.entity.Dept;
 import com.blackmagicwoman.mybatistest.entity.EmpEntity;
 import com.blackmagicwoman.mybatistest.mapper.DeptMapper;
@@ -17,7 +17,7 @@ import java.util.function.Function;
 /**
  * @program: mybatisTest
  * @description: service
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-15 21:02
  **/
 @Service

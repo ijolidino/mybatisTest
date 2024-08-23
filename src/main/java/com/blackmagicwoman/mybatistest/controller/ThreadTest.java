@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @program: mybatisTest
  * @description: 线程池练习
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-06-02 21:56
  **/
 public class ThreadTest {

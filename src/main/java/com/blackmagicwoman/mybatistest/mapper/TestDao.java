@@ -1,4 +1,4 @@
-package com.blackmagicwoman.mybatistest.dao;
+package com.blackmagicwoman.mybatistest.mapper;
 
 import com.blackmagicwoman.mybatistest.entity.EmpEntity;
 import org.apache.ibatis.annotations.Mapper;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @program: mybatisTest
  * @description:
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-15 21:03
  **/
 

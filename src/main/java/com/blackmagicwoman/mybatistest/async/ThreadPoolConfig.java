@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 /**
  * @program: mybatisTest
  * @description: 构造异步线程测试
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-03-30 20:09
  **/
 @Configuration
