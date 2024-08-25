@@ -38,7 +38,50 @@ public class ThreadTestConcurrent {
     });
 
     public static void main(String[] args) {
-        t1.start();
-        t2.start();
+//        t1.start();
+//        t2.start();
+
+        HashMap<MyKey, String> map = new HashMap<>();
+
+        // 假设MyKey是一个自定义的类，其hashCode方法被重写为返回相同的值
+        MyKey key1 = new MyKey("Key1");
+        MyKey key2 = new MyKey("Key2");
+        MyKey key3 = new MyKey("Key3");
+
+        // 将这三个键放入HashMap中
+        map.put(key1, "Value1");
+        map.put(key2, "Value2");
+        map.put(key3, "Value3");
+
+        // 打印HashMap的内容以验证它们都在同一个槽中
+        System.out.println("HashMap content: " + map);
+    }
+
+    // 自定义的键类，具有相同的hashCode
+    static class MyKey {
+        private final String value;
+
+        public MyKey(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public int hashCode() {
+            // 这里故意返回一个常数，以模拟所有键哈希到同一个槽的情况
+            return 1; // 返回一个固定的哈希码值
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || getClass() != obj.getClass()) return false;
+            MyKey myKey = (MyKey) obj;
+            return Objects.equals(value, myKey.value);
+        }
+
+        @Override
+        public String toString() {
+            return "MyKey{" + "value='" + value + '\'' + '}';
+        }
     }
 }
