@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 /**
  * @program: mybatisTest
  * @description: 事务配置类，不可缺少，尚未知具体作用
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-04-15 20:53
  **/
 public class TransactionManagementConfiguration implements TransactionManagementConfigurer {

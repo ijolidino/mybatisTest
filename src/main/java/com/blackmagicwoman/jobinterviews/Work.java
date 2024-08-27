@@ -11,7 +11,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * @program: mybatisTest
  * @description: 一个任务失败，所有的任务都得失败
- * @author: Fuwen
+ * @author: heise
  * @create: 2023-05-07 11:54
  **/
 @Slf4j

@@ -3,7 +3,7 @@ package com.blackmagicwoman.geekTime.SpringTest.AOP;
 /**
  * @program: mybatisTest
  * @description: 用户
- * @author: Fuwen
+ * @author: heise
  * @create: 2022-05-18 23:42
  **/
 public class User{
